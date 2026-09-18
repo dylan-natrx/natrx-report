@@ -27,7 +27,7 @@ Numbers that cannot be sourced do not get published, however good they sound.
 | Transects retreating faster than 2 ft/yr | 23.5% | CONFIRMED | |
 | Transects retreating faster than 5 ft/yr | 8.3% | CONFIRMED | |
 | 5th-percentile transect | -6.77 ft/yr | CONFIRMED | |
-| **Fastest 10% of eroding locations account for 43.44% of all land lost** | **43.44%** | **CONFIRMED, headline-safe. Published figure set 2026-08-28.** | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. |
+| **Fastest 10% of eroding locations account for 43.44% of all land lost** | **43.44%** | **REPRODUCIBLE, but the method does not match the sentence it is printed under. Dylan's call. See "The 43.44% method, reproduced 2026-09-18" below.** | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. |
 | Study period | 2012–2022 | CONFIRMED | |
 | Resolution | 1 meter | CONFIRMED | |
 | Temporal data points | 5 (2012, 2014, 2016, 2019, 2022) | CONFIRMED | Nick 07-22. Intended lower bound ~2010, in practice 2012. |
@@ -297,6 +297,77 @@ A Natrx OS project page for this engagement, "NC Coastal Federation Coastal Wetl
 | Contact: Drew Keeley, Solutions Specialist | Note: that page routes to sales. This one routes to press. |
 
 The one-pager is written largely in future tense ("is mapping," "will have") under a headline that says the analysis is complete. Our page is past tense for completed work, so the two will read differently by design.
+
+---
+
+## The 43.44% method, reproduced 2026-09-18
+
+Regenerate with `node scripts/nccf-concentration.mjs`. Committed so this is never derived from
+scratch a third time.
+
+**The figure reproduces exactly, and the method was recorded all along.** The register already said
+"all ~76k eroding points equally weighted," and that is precisely it: rank the 76,052 eroding
+transects by rate, take the top tenth **by transect count**, and report their share of the
+**summed rate**. That returns 43.4374%, and it reproduces every decile in `nccf-figdata.json` to
+within 0.004 points, so there is no doubt about provenance.
+
+| Decile | `nccf-figdata.json` | Equal weight, recomputed | Length weighted |
+|---|---|---|---|
+| 1 | 43.44 | **43.44** | **45.81** |
+| 2 | 19.04 | 19.04 | 18.20 |
+| 3 | 11.79 | 11.79 | 11.24 |
+| 4 | 8.06 | 8.06 | 7.67 |
+| 5 | 5.82 | 5.82 | 5.60 |
+| 6 | 4.35 | 4.35 | 4.21 |
+| 7 | 3.24 | 3.24 | 3.15 |
+| 8 | 2.31 | 2.31 | 2.24 |
+| 9 | 1.43 | 1.43 | 1.39 |
+| 10 | 0.51 | 0.51 | 0.49 |
+
+**The problem is that equal weighting answers a different question from the one the page asks.**
+The page says: *"Nearly half of all the land lost came from one tenth of the eroding shoreline."*
+Both halves of that sentence are length claims. Equal weighting supplies neither.
+
+1. **"One tenth of the eroding shoreline" is not what the method selects.** `rect_width`, the
+   stretch of coast each transect represents, runs from 1.02 to 172.96 feet, median 95.18,
+   coefficient of variation 0.49. The top 7,605 transects by count cover 105.2 miles, which is
+   **8.23%** of the 1,278 miles of eroding shoreline, not a tenth.
+2. **The bias is systematic rather than noise.** The fastest tenth sit on stretches averaging
+   73.0 feet against 90.5 feet for the rest, a ratio of 0.807. The fastest transects stand for
+   *less* coast than average, so equal weighting inflates their share.
+3. **"Land lost" is an area and the method never computes one.** Land lost is rate times width.
+   Summing bare rates drops the width entirely.
+
+**The figure the sentence describes is 45.81%.** Rank by rate, take the top tenth of the eroding
+shoreline **by length**, report their share of **land lost**. That is 45.8103%, and it is robust:
+splitting the boundary transect instead of excluding it moves it by 0.0001 points.
+
+**Both readings of the prose survive, and the correct one survives better.** "Nearly half" is
+truer at 45.81 than at 43.44. "One tenth of the eroding shoreline" becomes literally true under
+length weighting, where under the published method it is 8.23% of the shoreline described as a
+tenth.
+
+**Methods tested and rejected**, all against the target 43.44:
+
+| Method | Result |
+|---|---|
+| Eroding, rank by rate, top tenth by count, loss = rate (published) | **43.44** |
+| Eroding, rank by rate, top tenth by length, loss = rate x width | 45.81 |
+| Eroding, rank by rate, top tenth by count, loss = rate x width | 41.22 |
+| Eroding, rank by rate, top tenth by length, loss = rate | 48.41 |
+| Eroding, rank by total loss rather than rate, four variants | 32.57 to 46.90 |
+| All 93,418 transects rather than the eroding subset, eight variants | 37.36 to 53.41 |
+| Excluding the 401 null-geometry features | 43.49, near but not the figure |
+| r squared filtering at 0.3, 0.5, 0.7, 0.8, 0.9, 0.95 | 36.05 to 43.15 |
+| Aggregating into 780 stretches first | 30.69 to 32.33 |
+| Accretion offsetting loss in the denominator | 45.87 and 49.85 |
+
+The r squared 0.5 row also confirms the method independently: this register's own robustness note
+says "filtering to points with r² >= 0.5, the top decile still accounts for ~39%," and equal
+weighting at that threshold gives 39.34%.
+
+**Not decided here.** Whether to republish 45.81, keep 43.44 with a method note, or drop the
+decimal and keep "nearly half" is Dylan's editorial call. The page was not touched.
 
 ---
 
