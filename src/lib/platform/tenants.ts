@@ -1,5 +1,5 @@
 /**
- * The tenant registry. Identity and access policy only — no colors, no
+ * The tenant registry. Identity and access policy only: no colors, no
  * fonts, no logo paths, no brand config. Design lives entirely inside each
  * project's own directory. If a field would only ever be read by one
  * project, it does not belong here.
@@ -34,7 +34,7 @@ export const TENANTS: readonly Tenant[] = [
     slug: 'bop',
     displayName: 'Billion Oyster Project',
     // Ungated 2026-07-15 (pre-publication; the URL has not been shared).
-    // The page carries robots noindex until launch — see its layout.tsx.
+    // The page carries robots noindex until launch, see its layout.tsx.
     accessMode: 'public',
     passwordHash: null,
     mediaUrl: 'https://share.natrx.io/billion-oyster-project',
