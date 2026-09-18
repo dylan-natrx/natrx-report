@@ -47,11 +47,14 @@ export const TENANTS: readonly Tenant[] = [
     mediaUrl: null,
   },
   {
-    // Per-tenant credential hash — not shared with demo or any other tenant.
     slug: 'nccf',
     displayName: 'North Carolina Coastal Federation',
-    accessMode: 'gated',
-    passwordHash: '$2b$12$UjW3NFrRES0ADe15cWKCA.1d3PZpbiMyWa.M5wFvB3nymqMjk14OG',
+    // Ungated 2026-09-18, ahead of the Federation's announcement. The page
+    // carries robots noindex until launch, see its route.ts. The former
+    // per-tenant credential hash is in the history of this file if the page
+    // ever needs re-gating; re-gating is this entry, not the gate code.
+    accessMode: 'public',
+    passwordHash: null,
     mediaUrl: null,
   },
 ]
