@@ -1,7 +1,7 @@
 # NCCF: Status
 
 **Last updated 2026-09-18, end of session 8 (halftone, rail, contrast, dead CSS, share card,
-and then the page opened, noindexed and deployed).**
+the page opened, noindexed and deployed, then the 43.44% method and the Federation caveat).**
 
 **The open list that matters is the one at the bottom of this file, under session 8.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
@@ -891,6 +891,79 @@ fourth that carried none. All four are gone with the rules they described. Two m
 survived in comments attached to live rules, at the `.labrow` height override and the mobile type
 floors, and both are now colons. The fragment and this file are both at zero.
 
+### 43.44% reproduces, and the method answers a different question
+
+Regenerate with `node scripts/nccf-concentration.mjs`, committed so this is never derived from
+scratch a third time. Full method table in `CLAIMS.md`.
+
+**The method was recorded all along.** An earlier note in this entry said no method was written
+down. That was wrong. `CLAIMS.md` already said "all ~76k eroding points equally weighted," and
+that is exactly it: rank the 76,052 eroding transects by rate, take the top tenth **by transect
+count**, report their share of the **summed rate**. It returns 43.4374%, and it reproduces all ten
+deciles in `nccf-figdata.json` to within 0.004 points, so provenance is settled.
+
+**The method does not support the sentence it is printed under.** The page says *"nearly half of
+all the land lost came from one tenth of the eroding shoreline."* Both halves of that are length
+claims, and equal weighting supplies neither.
+
+- `rect_width`, the coast each transect stands for, runs from 1.02 to 172.96 feet, median 95.18,
+  coefficient of variation 0.49. The top 7,605 transects by count cover 105.2 miles, which is
+  **8.23%** of the 1,278 miles of eroding shoreline, not a tenth.
+- The bias is systematic rather than noise. The fastest tenth sit on stretches averaging 73.0 feet
+  against 90.5 for the rest, so they stand for less coast than average and their share is inflated.
+- Land lost is an area, rate times width. Summing bare rates never computes one.
+
+**The figure the sentence describes is 45.81%.** Top tenth of the eroding shoreline by length,
+share of land lost. Robust: splitting the boundary transect instead of excluding it moves it by
+0.0001 points.
+
+**The prose survives either way, and reads truer under the correct figure.** "Nearly half" is
+closer at 45.81 than at 43.44, and "one tenth of the eroding shoreline" becomes literally true
+under length weighting where the published method makes it 8.23%.
+
+Every candidate was tested and is tabulated in `CLAIMS.md`: ranking by total loss instead of rate,
+the full 93,418 population, dropping the 401 null-geometry features, r squared thresholds from 0.3
+to 0.95, aggregating into 780 stretches first, and letting accretion offset the denominator. None
+returns 43.44. The r squared 0.5 row corroborates the method independently, since this register's
+own robustness note predicts about 39% and equal weighting there gives 39.34%.
+
+**The page was not touched.** Whether to republish 45.81, keep 43.44 with a method note, or drop
+the decimal and keep "nearly half" is Dylan's call.
+
+### The Federation caveat, placed on the second attempt
+
+The withdrawn line made the Federation the sole decider and carried an unsourced clause. The
+replacement was checked against the same three rows before going anywhere near the page, and it
+passes.
+
+Placed verbatim in Beat 4, at the end of the two-pass description and immediately before the
+interactive, which is as close as the running prose gets to where the caption that used to carry
+this sat:
+
+> The wide pass narrowed the coast to the stretches worth a closer look. Which of those got
+> measured in detail was settled with the Federation.
+
+Clause one rests on the CONFIRMED row that the change analysis identified the areas addressable
+for the granular pass, and on SOW Phase II's "where further analysis is warranted." It says
+narrowed rather than selected, so the screen is not made the decider. Clause two rests on the
+CONFIRMED row that the final selection was determined in coordination with NCCF, which is SOW
+Phase IV verbatim, and "settled with" keeps it joint. "Which of those" scopes the choice to the
+wide pass's output, matching Phase III's "once addressable areas are identified during Phase II."
+
+Both halves present, neither party alone, nothing asserted that the register does not carry. The
+blocked prediction claim is untouched, because "worth a closer look" is about where to spend the
+measuring budget rather than about predicting rates.
+
+Verified at 390 and 1440: the text serves character for character, and the reveal order through
+Beat 4 is unchanged, one target added at index 6, none removed, relative order of all twelve
+pre-existing targets identical at both widths. Recorded in `EDITORIAL.md` and `CLAIMS.md`.
+
+### Em dashes, the platform comments
+
+The last six, two in `tenants.ts` and four in `route.ts`, are gone. Punctuation only. The pair
+bracketing the design-of-record path became a matched pair of commas; the rest took colons or
+commas as the sentence wanted. Comments only, so the served document is unchanged.
+
 ### Closed this session, with the check that closed each one
 
 | Item | Closed because |
@@ -1058,47 +1131,56 @@ Checked against the page, `CLAIMS.md` and production on 2026-09-18.
    numbers and the method. Nothing dead is left: every selector in the fragment that still
    matches nothing is one the keep-rule requires, and there are 49 of those.
 
-2. **The Federation-priorities caveat still has no home. Still open.** A line was supplied for
-   Beat 4 on 2026-09-18 and was not placed, because it collides with three `CLAIMS.md` rows: the
-   wide pass identifying the addressable areas (line 307, CONFIRMED), the final selection being
-   made in coordination with NCCF rather than by it (line 308, CONFIRMED), and the withdrawn
-   single-half claim (line 310). Its second clause, about where the Federation already works, has
-   no source in the register at all. See "The Federation caveat was not placed" above. Needs a
-   line carrying both halves of the sequence, with the second clause sourced or dropped.
+2. **The Federation caveat. CLOSED 2026-09-18, second attempt.** Placed verbatim in Beat 4, at
+   the end of the two-pass description and immediately before the interactive: *"The wide pass
+   narrowed the coast to the stretches worth a closer look. Which of those got measured in detail
+   was settled with the Federation."* Both halves present, neither party the sole decider, both
+   clauses traced to confirmed rows before placing. Recorded in `EDITORIAL.md` and `CLAIMS.md`.
+   Reveal order through Beat 4 verified unchanged at 390 and 1440.
 
-3. **The zone count is a property of our rendering.** `CLAIMS.md` line 367 still carries it as
+3. **43.44% versus 45.81%, on the page now, Dylan's call.** The published figure reproduces
+   exactly, under the method this register already recorded as "all ~76k eroding points equally
+   weighted." That method does not match the sentence printed above it. It selects a tenth of the
+   *transects*, which is 8.23% of the eroding shoreline rather than a tenth, and it sums bare
+   rates rather than land lost, which is rate times the width each transect represents. The figure
+   the sentence describes is 45.81%. Both readings leave "nearly half" true, and "one tenth of the
+   eroding shoreline" becomes literally true only under the 45.81 method. The page was not
+   touched. Full method comparison and every rejected candidate in `CLAIMS.md`, regenerate with
+   `node scripts/nccf-concentration.mjs`.
+
+4. **The zone count is a property of our rendering.** `CLAIMS.md` line 367 still carries it as
    PENDING with the method note. The miles and the 1.96% are the defensible forms.
 
-4. **Not deployed. CLOSED 2026-09-18.** Pushed and live. Production deployment
+5. **Not deployed. CLOSED 2026-09-18.** Pushed and live. Production deployment
    `dpl_CFzB5DbWvJtxhM4SV1aYGT88B9kW` reached READY on commit
    `71fd0229dd782efe9971a86a65cdfc8771771fb5`, matching local HEAD, and
    `nccf.natrx.report` serves the page at 200 with no redirect. Everything from sessions 6, 7 and
    8 is on the site.
 
-5. **The share card could not unfurl while the page was gated. CLOSED 2026-09-18, retired by
+6. **The share card could not unfurl while the page was gated. CLOSED 2026-09-18, retired by
    the gate removal.** The 307 to `/login` is gone, so an unfurler reaching the public URL now
    gets the document and its og: tags directly. The 2026-09-18 decision to leave `/login` bare is
    moot: nothing is sent there any more. Verified live, all four og:image tags resolving against
    `https://nccf.natrx.report` and the image itself fetching 200 as `image/png`. noindex keeps
    search engines out without touching unfurling.
 
-6. **The Jacob interview's -15 ft/yr. Investigated 2026-09-18, Dylan's editorial call.** The
+7. **The Jacob interview's -15 ft/yr. Investigated 2026-09-18, Dylan's editorial call.** The
    figure is wrong and is not Jacob's: line 131 is the note-writer's annotation quoting a
    superseded version of `CLAIMS.md`. Recomputed peak is -45.9074 ft/yr and 423 transects exceed
    -15. Nothing on the page is falsified. The interview file sits outside this repo, at
    `NCCF x Natrx/files/`, so a repo-only grep still reports it fixed. Fixing that file is
    Dylan's call, not a page change. See "The Jacob contradiction" above.
 
-7. **The -45.91 and -45.60 reconciliation. CLOSED 2026-09-18.** There was never a
+8. **The -45.91 and -45.60 reconciliation. CLOSED 2026-09-18.** There was never a
    disagreement. -45.9074 is the minimum of `land_change_ft_per_year` on transect 200;
    -45.6038 is the minimum of `epr_ft_per_year`, the End Point Rate, on transect 210. Two
    different statistics on two different transects. `CLAIMS.md` line 255 can drop its
    "reconcile before print," and line 246 should say which column it is quoting.
 
-8. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
+9. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
    answered.
 
-9. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, and the
+10. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, and the
    launch date.
 
-10. **Insync and `.git`.** The debris is swept, the cause is not. See the housekeeping note above.
+11. **Insync and `.git`.** The debris is swept, the cause is not. See the housekeeping note above.
