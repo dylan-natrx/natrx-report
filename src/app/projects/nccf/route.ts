@@ -30,8 +30,7 @@ const fragment = readFileSync(
 
 // Share metadata lives in the wrapper, not the reference file. og:title
 // mirrors the fragment's own <title> so a future title decision propagates
-// without touching this handler. There is no robots directive, because
-// access mode is still an open decision.
+// without touching this handler.
 //
 // og:image was previously deferred until a pass-2 render of the interactive
 // existed. That is reversed. The interactive is a hairline coastline carrying
@@ -54,8 +53,18 @@ const imageAlt =
   'coastal erosion starts with knowing where to begin.”, with the second ' +
   'clause in green, above the NCCF × Natrx lockup.'
 
+// REMOVE AT LAUNCH: delete the robots line below, and nothing else in this
+// file changes. The page went public on 2026-09-18 ahead of the Federation's
+// announcement, so it is reachable but must not be indexed until they have
+// announced it. Deleting this one line is the whole of turning indexing on.
+//
+// This deliberately does not stop the link previewing. Slack, iMessage and
+// LinkedIn read the og: tags and ignore robots entirely, so a shared link
+// still unfurls with the card. noindex governs search engines, not unfurlers,
+// which is exactly the split we want while the page is quietly open.
 const meta =
   '<link rel="icon" href="/images/favicon.png">' +
+  '<meta name="robots" content="noindex, nofollow">' +
   `<meta name="description" content="${description}">` +
   `<meta property="og:title" content="${pageTitle}">` +
   `<meta property="og:description" content="${description}">` +
