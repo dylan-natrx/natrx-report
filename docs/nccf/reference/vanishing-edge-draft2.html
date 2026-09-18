@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600;700;800;900&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --paper:#F3F1F4; --ink:#121D54; --tint:#3DA993;
+  --paper:#F3F1F4; --ink:#121D54; --tint:#3DA993; --em:#2C7F6D;
   --ink-70:rgba(18,29,84,.7); --ink-45:rgba(18,29,84,.45);
   --ink-22:rgba(18,29,84,.22); --ink-10:rgba(18,29,84,.1); --alert:#EB5C31;
   --gut:clamp(24px,5vw,80px); --rail:236px;
@@ -71,7 +71,7 @@ h2{font-size:clamp(34px,4.6vw,62px);line-height:.86;margin:0 0 28px;max-width:17
 .kick{color:var(--tint);margin-bottom:24px;mix-blend-mode:multiply}
 p{margin:0 0 20px;max-width:58ch;line-height:1.4}
 .deck{font-size:19px;line-height:1.4;max-width:52ch}
-em{font-style:normal;color:var(--tint)}
+em{font-style:normal;color:var(--em)}
 strong{font-weight:600}
 
 #b1{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:0}
@@ -249,7 +249,7 @@ footer{filter:none}
 .closing blockquote{margin:0;font-family:'Darker Grotesque',sans-serif;font-weight:600;
   font-size:clamp(30px,4.6vw,64px);line-height:.94;letter-spacing:-.028em;max-width:19ch;
   mix-blend-mode:multiply;filter:url(#tb)}
-.closing blockquote em{color:var(--tint)}
+.closing blockquote em{color:var(--em)}
 .closing .attr{margin-top:30px;color:var(--ink-45)}
 
 /* reversed footer */
@@ -325,7 +325,7 @@ html,body{background:#FAFAFA}
 h1,h2,.closing blockquote{-webkit-mask-image:none;mask-image:none;
   padding-bottom:.09em;overflow:visible}
 h1,h2{filter:url(#tb)}
-h1 em{color:#2E8371;font-style:normal}
+h1 em{font-style:normal}
 /* graphics get a bleed you can actually see */
 .figure svg,.sgnum,.sgsplit b{filter:url(#tbInk)}
 #ncBoxes,#ncPts,#ncFast{filter:url(#tbInk)}

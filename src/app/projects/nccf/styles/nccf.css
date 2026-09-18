@@ -34,6 +34,10 @@ body {
   --paper: #F3F1F4;
   --ink: #121D54;
   --tint: #3DA993;
+  /* em on paper. --tint is 2.76:1 and fails at every size. One green for every
+     em that sits on paper, display or body; the pull-quote em stays light
+     because it sits on the ink block. */
+  --em: #2C7F6D;
   --ink-70: rgba(18, 29, 84, 0.7);
   --ink-45: rgba(18, 29, 84, 0.45);
   --ink-22: rgba(18, 29, 84, 0.22);
@@ -309,13 +313,7 @@ body {
 
 .nccf-root em {
   font-style: normal;
-  color: var(--tint);
-}
-
-/* --tint on paper is 2.56:1. Display type clears the 3:1 large-text floor only
-   below this; body-size em does not clear 4.5:1 at all. See STATUS. */
-.nccf-root h1 em {
-  color: #2E8371;
+  color: var(--em);
 }
 
 .nccf-root strong {
