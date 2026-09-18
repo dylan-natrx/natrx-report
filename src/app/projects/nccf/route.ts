@@ -30,15 +30,29 @@ const fragment = readFileSync(
 
 // Share metadata lives in the wrapper, not the reference file. og:title
 // mirrors the fragment's own <title> so a future title decision propagates
-// without touching this handler. og:image is deferred until the pass-2
-// render exists (STATUS.md open item); no robots directive — access mode
-// is an open decision.
+// without touching this handler. There is no robots directive, because
+// access mode is still an open decision.
+//
+// og:image was previously deferred until a pass-2 render of the interactive
+// existed. That is reversed. The interactive is a hairline coastline carrying
+// 780 aggregated stretches, and a feed thumbnail gives it roughly 250px, at
+// which it turns to mush. The card carries the headline instead, which is the
+// one thing that survives the size. It is composed for a 1200x630 frame
+// rather than cropped out of the page, so the type is set for the box it is
+// read in: source frame at docs/nccf/reference/og-nccf-source.html, rendered
+// to public/images/og-nccf.png by scripts/render-og-nccf.mjs. Re-run that
+// script after any headline change, or the card will quote a dead headline.
 const pageTitle =
   fragment.match(/<title>(.*?)<\/title>/)?.[1] ?? 'nccf.natrx.report'
 const description =
   'Ten years of shoreline change, measured along 2,900 miles of eastern ' +
   'North Carolina’s coast. Nearly half of the land lost came from one ' +
   'tenth of the shoreline.'
+
+const imageAlt =
+  'Title card on paper. The headline reads “Fighting North Carolina’s ' +
+  'coastal erosion starts with knowing where to begin.”, with the second ' +
+  'clause in green, above the NCCF × Natrx lockup.'
 
 const meta =
   '<link rel="icon" href="/images/favicon.png">' +
@@ -49,17 +63,40 @@ const meta =
   '<meta property="og:site_name" content="natrx.report">' +
   '<meta name="twitter:card" content="summary_large_image">'
 
-const html =
-  '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
-  '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-  meta +
-  fragment +
-  '</body></html>'
+// og:image must be absolute, and this page answers on several origins
+// (localhost in the design loop, the Vercel preview domain, and
+// nccf.natrx.report), so the origin is taken from the request instead of
+// being hardcoded. Behind Vercel's proxy the forwarded headers carry the
+// origin the reader actually asked for; request.url is the fallback for a
+// direct hit. That is the only reason the document is assembled per request
+// rather than at module load. The fragment is still read from disk once.
+function originOf(request: Request) {
+  const host =
+    request.headers.get('x-forwarded-host') ?? request.headers.get('host')
+  const proto =
+    request.headers.get('x-forwarded-proto') ??
+    new URL(request.url).protocol.replace(':', '')
+  return host ? `${proto}://${host}` : new URL(request.url).origin
+}
+
+function documentFor(origin: string) {
+  return (
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+    meta +
+    `<meta property="og:image" content="${origin}/images/og-nccf.png">` +
+    '<meta property="og:image:width" content="1200">' +
+    '<meta property="og:image:height" content="630">' +
+    `<meta property="og:image:alt" content="${imageAlt}">` +
+    fragment +
+    '</body></html>'
+  )
+}
 
 export const dynamic = 'force-dynamic'
 
-export function GET() {
-  return new Response(html, {
+export function GET(request: Request) {
+  return new Response(documentFor(originOf(request)), {
     headers: {
       'content-type': 'text/html; charset=utf-8',
       'cache-control': 'no-store',

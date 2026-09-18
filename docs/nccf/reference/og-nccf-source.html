@@ -1,0 +1,88 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>og-nccf source</title>
+<!--
+  Source frame for public/images/og-nccf.png, rendered at 1200x630 by
+  scripts/render-og-nccf.mjs.
+
+  This is a purpose-built frame, not a crop of the live page. The page of
+  record (vanishing-edge-draft2.html) sets the h1 with a viewport clamp and
+  the masthead at 13px, both tuned for a browser window. Cropping that to
+  630px of height gives type composed for the wrong box. So the headline and
+  the lockup are set here for this frame: same faces, same weights, same
+  tracking, same ink, scaled to a card that is read at thumbnail size.
+
+  Everything else is carried over from the page verbatim: paper #FAFAFA,
+  ink #121D54, the em clause in --em #2C7F6D, the multiply blend, the tb
+  texture-bleed filter on the display type, and the 170px grain tile.
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600;700;800;900&family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FAFAFA; --ink:#121D54; --tint:#3DA993; --em:#2C7F6D;
+  --pad:74px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper)}
+body{width:1200px;height:630px;overflow:hidden;color:var(--ink);
+  font-family:'Familjen Grotesk',system-ui,sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased}
+
+/* the page's fixed grain, at the page's opacity and tile size */
+#tex{position:absolute;inset:0;z-index:70;pointer-events:none;mix-blend-mode:multiply;opacity:.04;
+  background-size:170px 170px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+#frame{position:absolute;inset:0;padding:var(--pad);display:flex;flex-direction:column;
+  justify-content:space-between}
+
+/* h1 as the page sets it: Darker Grotesque 600, -.025em, line-height .8 */
+h1{font-family:'Darker Grotesque',sans-serif;font-weight:600;letter-spacing:-.025em;
+  line-height:.8;margin:0;mix-blend-mode:multiply;filter:url(#tb);
+  font-size:120px}
+h1 em{font-style:normal;color:var(--em)}
+
+/* the masthead lockup, in the page's .brand treatment, scaled for the frame */
+.brand{font-weight:700;font-size:26px;letter-spacing:.13em;text-transform:uppercase;
+  mix-blend-mode:multiply;line-height:1}
+.brand .bx{color:var(--tint);font-weight:500;padding:0 .35em}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <filter id="tb" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+   <feMorphology operator="dilate" radius="0.27" in="SourceGraphic" result="d"/>
+   <feGaussianBlur in="d" stdDeviation="0.54" result="b"/>
+   <feComponentTransfer in="b" result="w"><feFuncA type="linear" slope="1.9"/></feComponentTransfer>
+   <feComposite in="SourceGraphic" in2="w" operator="over"/></filter>
+</defs></svg>
+
+<div id="frame">
+  <h1 id="hed">Fighting North Carolina&rsquo;s coastal erosion <em>starts with knowing where to begin.</em></h1>
+  <div class="brand">NCCF<span class="bx">&times;</span>Natrx</div>
+</div>
+<div id="tex"></div>
+
+<script>
+/* Fit the headline to the frame: the largest size whose set height still
+   clears the lockup and the bottom margin. Deterministic for a given face,
+   so the rendered PNG is reproducible. */
+window.fitHeadline = function () {
+  var hed = document.getElementById('hed')
+  var brand = document.querySelector('.brand')
+  var pad = 74
+  var gap = 46
+  var avail = 630 - pad * 2 - brand.getBoundingClientRect().height - gap
+  var lo = 40, hi = 220, best = lo
+  for (var i = 0; i < 40; i++) {
+    var mid = (lo + hi) / 2
+    hed.style.fontSize = mid + 'px'
+    if (hed.getBoundingClientRect().height <= avail) { best = mid; lo = mid } else { hi = mid }
+  }
+  hed.style.fontSize = Math.floor(best * 10) / 10 + 'px'
+  return {
+    fontSize: hed.style.fontSize,
+    headHeight: Math.round(hed.getBoundingClientRect().height),
+    avail: Math.round(avail),
+  }
+}
+</script>
