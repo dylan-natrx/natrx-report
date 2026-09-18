@@ -1,6 +1,8 @@
 # NCCF: Status
 
-**Last updated 2026-08-28, end of the third session (editorial and design review).**
+**Last updated 2026-09-18, end of session 8 (halftone, rail, contrast, dead CSS, share card).**
+
+**The open list that matters is the one at the bottom of this file, under session 8.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
 Read this first. It says where the page actually is and what is stale.
 
@@ -677,3 +679,210 @@ BOP-specific.
 **Do not remove `#ncFast`.** The empty group is still in the markup, and `.decbar i` shares a
 rule with the live `.scale .bfill`.
 
+
+---
+
+## Session 8, 2026-09-18
+
+Five fixes on the page, one new asset, and a repo cleanup. Every item in the open list at the
+bottom was re-checked against the page and the data files rather than copied forward from
+2026-09-02, and six of them turned out to be closed already.
+
+### The scale bar bled because the halftone was too fine, and 3x renders hid it
+
+The bar carried a 4.6px dot pitch inside a 26px bar. At that ratio the dots touch, so at device
+pixel ratio 1 the bar closed into a solid green band with pinholes and no visible edge. It looked
+correct in every render taken at 3x, which is why it was diagnosed three times without once
+being fixed: at 3x the pitch is effectively 13.8 device pixels and the dots separate.
+
+Now `#hsbar` is pitch 7.5 with a circle radius of 2.85, and `#tbDot` is dilate radius 0.20 with a
+0.42 blur, so the bar ends read ragged the way the photo plates do. Commit `fbc49f8`.
+
+**The rule, so this is not diagnosed a fourth time: halftone work is verified at 1x.** A screenshot
+at 2x or 3x proves nothing about a halftone, because the artifact being looked for is dots closing
+into a solid at the device pixel grid. Check at device pixel ratio 1 first, then confirm the
+retina render separately.
+
+Note that the photo plates (`#psgh`, `#psls`, `#psin`) still run at 4.5 pitch with radius 1.930,
+and correctly so. They sit on large images where a coarse screen would be obvious. The 7.5 pitch
+is specific to the thin 26px bar.
+
+### Rail jumps replayed every beat they skipped
+
+A rail click can cross a dozen reveal targets. The reveal observer staggered them 90ms apart the
+way a scroll stagger works, so a jump past several beats spent seconds playing back everything it
+skipped before the content the reader asked for appeared. While a jump is in flight, `jumping` is
+set and every reveal fires at once with its transition delay zeroed.
+
+The landing is re-asserted on `scrollend`, because `scrollIntoView` fixes its stop point at click
+time and three unsized images decoding mid-flight moved the page underneath it, which is why the
+eyebrow sometimes sat off the top. Those three images now carry intrinsic `width` and `height`.
+The other two content images already reserved their space through an inline `aspect-ratio`, so the
+whole set is layout-stable now.
+
+`scrollend` is feature-detected, with a 1600ms timeout as the fallback for browsers that do not
+fire it. Commit `bde04ca`.
+
+### One green for every em that sits on paper
+
+`--em` is `#2C7F6D` at 4.61:1 against the paper. It replaces two greens that were both too light
+to carry text: `--tint` at 2.76:1, and the headline's own `#2E8371` at 4.37:1, neither of which
+cleared AA at body size. `#2E8371` no longer appears anywhere in the file.
+
+The pull-quote em is the one exception and stays `#7FD8C4`, because it sits on the ink block where
+it measures 9.42:1. Inverting that one to `--em` would have made it unreadable. So the rule is by
+background, not by element: `--em` on paper, `#7FD8C4` on ink. Commit `1a553e7`.
+
+### 72 dead CSS rules removed, gated on a render diff rather than a text scan
+
+96 lines, 6.6KB. Commit `cca46cc`. The method matters, because the text-scan version of this job
+was written, run and reverted on 2026-09-02 after it silently dropped 52px of mobile footer
+clearance.
+
+**The method that worked.** Walk `document.styleSheets` in a real browser at 360, 390, 768, 1080
+and 1440, with reveals forced in, the glossary open and all three interactive stops visited, then
+test each selector against the live DOM. Keep any selector whose class or id token appears
+anywhere in the fragment's markup or script regardless of what the DOM says, which is what
+protects `.pl` and anything else created by the reveal JS at runtime. Scope the prune to the
+fragment's own style blocks and never to `nccf.css`, which also serves the login and scaffold
+pages and will look dead from inside this one page. Then diff full-page renders before and after
+at every width, plus the glossary drawer and all three interactive stops.
+
+**The charset trap, which cost the first run.** The fragment carries no `<meta charset>`, because
+`route.ts` adds it when it wraps the fragment in a real document. Load the fragment over `file://`
+and the browser sniffs the encoding instead, so the two copies can be sniffed differently, the
+headline reflows as mojibake, and the harness reports a 24px regression at 768 that does not
+exist. A `file://` diff needs a charset injected into both copies before anything it says can be
+believed.
+
+**The sweep did not finish the job, and the residue is measured below.** See open item 1.
+
+### The share card carries the headline
+
+`public/images/og-nccf.png`, 1200x630, headline plus the NCCF x Natrx lockup on paper. Commit
+`312c9e0`. og:image had been deferred pending a pass-2 render of the interactive. That is reversed:
+the interactive is a hairline coastline over 780 aggregated stretches, a feed thumbnail gives it
+roughly 250px, and it turns to mush at that size. The headline is the one thing that survives.
+
+The card is built from `reference/og-nccf-source.html`, a purpose-built 1200x630 frame rather than
+a crop of the page. The page sets its h1 on a viewport clamp and its masthead at 13px, both tuned
+for a browser window, so cropping that to 630px of height gives type composed for the wrong box.
+The source frame fits the headline by binary search against the available height, so the render is
+reproducible rather than hand-tuned. Everything else is carried over verbatim: paper `#FAFAFA`,
+ink `#121D54`, the second clause in `--em`, the multiply blend, the `tb` filter, and the 170px
+grain tile.
+
+`scripts/render-og-nccf.mjs` drives it with Playwright and throws if the webfonts fail to load,
+rather than shipping a card set in a fallback face.
+
+**Re-run the render after any headline edit, or the card quotes a dead headline:**
+
+```
+node scripts/render-og-nccf.mjs
+```
+
+All four tags are in `route.ts`: `og:image`, `og:image:width`, `og:image:height` and
+`og:image:alt`. The URL is absolute and taken from `x-forwarded-host` and `x-forwarded-proto`,
+with `request.url` as the fallback for a direct hit, because this page answers on localhost, the
+Vercel preview domain and `nccf.natrx.report`. That is the only reason the document is now
+assembled per request. The fragment is still read from disk once at module load, and the literal
+`process.cwd()` join that Vercel's output file tracing follows is untouched.
+
+### Git housekeeping
+
+The 31 zero-byte stale lock files in `.git/` are deleted, and the 188 orphaned `tmp_obj_*` objects
+are gone. `git fsck` reports only dangling commits and blobs, which are the expected residue of the
+reverted prune and need no action.
+
+The underlying problem is unchanged. Git still cannot delete its own lock files in this folder
+because Insync holds them, so every write can leave an `index.lock` or `HEAD.lock` behind. The
+workaround is still to move the lock aside and retry, and the debris still needs sweeping by hand
+afterwards.
+
+### Environment note: the Playwright browser path is per machine
+
+A brief handed to a session hardcoded `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`. That
+path is the cloud container only and does not exist on darwin, where the browser is the
+npx-cached Playwright 1.62.1 with `chromium_headless_shell` under
+`~/Library/Caches/ms-playwright`. `render-og-nccf.mjs` reads `PLAYWRIGHT_MODULE` and `PW_CHROMIUM`
+so it runs in either place without editing:
+
+```
+PLAYWRIGHT_MODULE=/Users/dylandibona/.npm/_npx/<hash>/node_modules/playwright/index.mjs \
+  node scripts/render-og-nccf.mjs
+```
+
+**Do not hardcode a browser path in a brief again.** Name the tool and let the script resolve the
+binary.
+
+### Closed this session, with the check that closed each one
+
+| Item | Closed because |
+|---|---|
+| `og:image` | Built and wired, commit `312c9e0`. The PNG is 1200x630 and all four tags are in `route.ts`. This appears as open in five earlier sections of this file. Those are historical entries and are left alone. |
+| Beat 5 "hardest hit overall" | The phrase is gone from the page. It now reads "Dare County, which takes in much of the Outer Banks, is eroding fastest. Hyde County, on the mainland to the southwest, is close behind." Fixed in `e78218b`. |
+| Page title | Set to "Measuring Shoreline Erosion in Eastern North Carolina", and Dylan has confirmed it stays. |
+| Favicon | Wired in both places: `route.ts` emits the `<link rel="icon">` on the fragment wrapper, and `layout.tsx` carries `icon: '/images/favicon.png'` for the gate and scaffold pages. The file is present. |
+| em contrast | Closed by the `--em` change above. |
+| Dead CSS, as originally framed | The sweep ran and 72 rules are gone. The item does not close outright, because a measured residue is left. It is narrowed and carried forward as open item 1. |
+
+### Open
+
+Checked against the page, `CLAIMS.md` and production on 2026-09-18.
+
+1. **Dead CSS, residue after the sweep.** 21 rules across 15 selectors still match nothing.
+   Cross-checking every selector in the fragment's style blocks against its markup and script,
+   with base64 and SVG path data excluded, leaves `.stats`, `.lrow`, `.lrow .nm`, `.cred`,
+   `#heroArt`, `.herolab`, `.callout`, `.callout .txt`, `.labctl`, `.labctl-in`,
+   `.labctl-in::after`, `.labside`, `.labside button`, `.labside .labctl-in` and
+   `.labside button.reset`. `.labside` alone accounts for 15 occurrences, all inside the style
+   block and none in markup. `#ncPts` also survives, not as a rule of its own but as a dead
+   component inside selector groups whose other tokens are live, so it cannot be removed by
+   deleting whole rules.
+
+   The likely cause is the sweep's own keep-rule. It keeps any selector whose token appears
+   anywhere in the fragment, and if that search ran over the whole file rather than over markup
+   and script alone, every selector matched itself inside its own stylesheet and nothing in this
+   family could ever be pruned. Whoever picks this up should confirm that before re-running, and
+   should split the mixed `#ncPts` groups by hand rather than by rule deletion.
+
+2. **The Federation-priorities caveat still has no home.** Verified absent from the page prose.
+   Removing the interactive's captions took out the only place saying the Federation's own
+   priorities helped set which stretches were measured. The 2026-09-02 SOW correction requires
+   both halves wherever the page describes the sequence, and the Beat 4 prose carries only the
+   screening half.
+
+3. **The zone count is a property of our rendering.** `CLAIMS.md` line 367 still carries it as
+   PENDING with the method note. The miles and the 1.96% are the defensible forms.
+
+4. **Not deployed.** Confirmed from outside on 2026-09-18:
+   `https://nccf.natrx.report/images/og-nccf.png` returns 404 while the root returns a 307 to
+   `/login`, so the gate is live but the deployed build predates `312c9e0`. Everything from
+   sessions 6, 7 and 8 is on `main` and none of it is on the site.
+
+5. **The share card cannot unfurl while the page is gated.** Tagged for launch, not now. A request
+   for the public URL gets a 307 to `/login`, and `/login` carries no `og:` tags at all, so an
+   unfurler sees nothing. Unfurlers do not send cookies, so a session does not help.
+   **Decision taken 2026-09-18: leave `/login` bare for now.** Putting share tags on the login page
+   would unfurl the finding to anyone holding a forwarded link, before the Montefiore gate clears.
+   Revisit when access opens, at which point the card starts working on its own with no further
+   change.
+
+6. **The Jacob interview still contradicts `CLAIMS.md` on the peak rate.**
+   `INTERVIEW-JACOB-2026-08-17.md` line 131 says the NCCF dataset "tops out near -15 ft/yr".
+   `CLAIMS.md` line 37 marks that figure wrong and carries the peak as -45.91. Note for anyone
+   searching: that interview file lives outside this repo, in `NCCF x Natrx/files/`, so a
+   repo-only grep reports the contradiction as fixed when it is not.
+
+7. **The -45.91 and -45.60 reconciliation.** `CLAIMS.md` line 255 still logs it. The register
+   carries -45.91 recomputed from the public ArcGIS webmap; the repo's derived layer gives -45.60.
+   The page says "about 46 feet", which survives either figure, so this blocks print rather than
+   the page.
+
+8. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
+   answered.
+
+9. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, and the
+   launch date.
+
+10. **Insync and `.git`.** The debris is swept, the cause is not. See the housekeeping note above.
