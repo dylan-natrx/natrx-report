@@ -188,12 +188,12 @@ clear of the rail; rail gutter added; the phone Contents sheet takes the ink
 colour per the 6b decision; share metadata (description, og:*, twitter:card)
 added to the served wrapper with og:title mirroring the page title.
 
-Held, per instruction: the lab control states (Task 5 — inside the
+Held, per instruction: the lab control states (Task 5: inside the
 interactive, which is mid-redesign). Task 8 (get .git out of Insync's sync
-scope) is proposed only — options in the PR; Dylan executes.
+scope) is proposed only: options in the PR; Dylan executes.
 
 Amended after the beat swap: the rail-label dependency dissolved ("04 The
-method" does not wrap), so 6a closed fully — the gutter experiment was
+method" does not wrap), so 6a closed fully: the gutter experiment was
 removed (it caused two other labels to wrap; measured clearances are 78px
 to content and 24px to the map label without it), and inactive rail
 numbers moved to ink-70 (2.78:1 at ink-45 failed AA; verifier finding).
@@ -755,7 +755,8 @@ headline reflows as mojibake, and the harness reports a 24px regression at 768 t
 exist. A `file://` diff needs a charset injected into both copies before anything it says can be
 believed.
 
-**The sweep did not finish the job, and the residue is measured below.** See open item 1.
+**The sweep did not finish the job.** It was finished later the same day, under the same gate.
+See "The sweep is finished" below.
 
 ### The share card carries the headline
 
@@ -815,6 +816,80 @@ PLAYWRIGHT_MODULE=/Users/dylandibona/.npm/_npx/<hash>/node_modules/playwright/in
 **Do not hardcode a browser path in a brief again.** Name the tool and let the script resolve the
 binary.
 
+### The sweep is finished, and the guess about why it stalled was wrong
+
+Two explanations were on the table for the 21 rules the 72-rule sweep left behind. Both were
+tested against the artifacts before anything was changed, and the one written up earlier in this
+entry turned out to be false.
+
+**A, that the keep-rule's token search leaked stylesheet text, is falsified.** If the corpus had
+included the stylesheet, every selector would have matched itself inside its own rule and nothing
+could ever have been pruned. Testing that directly: of the 72 rules the sweep did remove, 71 would
+have survived under a leaked corpus. The one exception is `strong`, which carries no class or id
+token at all. The corpus was clean. This was a guess written up as a likely cause, and it was
+wrong.
+
+**B, that a group survives when only some of its members are dead, is confirmed, but it never
+applied to the 21.** Zero mixed groups were removed by the sweep. All 21 of the rules in question
+are pure dead groups, so B does not explain any of them.
+
+**What actually held, for 16 of the 21: the sweep never descended into `@media`.** All 72 removals
+sit at the top level and not one is inside a media block. `CSSMediaRule` has no `selectorText`, so
+a walk that reads that property straight off each rule skips media blocks silently. That is a
+whole class of rule the first pass could not see.
+
+**The remaining 5 are top level and not explained.** `#heroArt`, `.callout`, `.labctl` and two
+`.labside button` rules. Each has a same-selector twin elsewhere in the file that the sweep did
+remove, so it was not keyed on selector text alone. The sweep script was never committed, so the
+mechanism is not recoverable from what is in the repo. Recording the gap rather than inventing a
+cause for it.
+
+**What was removed.** 21 pure dead groups dropped outright. 12 mixed groups split, dead members
+only, live members and their declarations untouched: the `#ncPts` family, `.decbar i` out of
+`.decbar i,.scale .bfill`, `.sgsplit b` out of `.figure svg,.sgnum,.sgsplit b`, and `.decfoot` and
+`.decfoot::before` out of their `.scale .srow` pairs. 6 media blocks left empty by the drops were
+removed. 4 section comments that now headed nothing went with them. 401 rules to 380, 1,903 bytes.
+
+`nccf.css` was not touched. It serves the login and scaffold pages too, so it cannot be pruned
+against this page alone.
+
+**Nothing dead is left, and the keep-rule still protects what it should.** Walking
+`document.styleSheets` at 360, 390, 768, 1080 and 1440, with reveals forced in, the glossary open
+and all three stops visited, leaves 49 selectors that match nothing at rest. Every one of them is
+required by the keep-rule, because its class or id token appears in the fragment's markup or
+script. `.pl` is the case that rule exists for, since the reveal JS creates it. `.figure` is the
+instructive one: the token `figure` is in the markup, but as the element `<figure>` rather than as
+a class, so the rule keeps a genuinely dead selector. That is the rule being conservative in the
+direction it should be.
+
+**The gate is committed this time.** `harness/nccf/css-diff.mjs`, which is the reason the first
+text-scan attempt was reverted and this one was not. It renders both copies at 360, 390, 768 and
+1440, plus the glossary drawer and all three interactive stops at 390 and 1440, and requires every
+state to be pixel identical. It injects the charset into both copies, and it gives each stop
+2000ms to let the viewBox camera land. It also adds a reduced-motion pass, which the earlier gate
+did not have and needed: `.decbar i,.scale .bfill` lives inside
+`@media(prefers-reduced-motion:reduce)`, and an edit to a rule in there is invisible to every
+other state in the list. Final run: 14 states, all zero.
+
+**One thing the gate does not owe you, recorded in `harness/nccf/NOISE_FLOOR.md`.** A 1440-width
+state intermittently reports exactly 3 differing pixels. It is the same three pixels every time,
+one least-significant bit apart, on the antialiased edge of the `#ncZones` marker circles. It is
+not content-dependent: diffing the fragment against a byte-identical copy of itself fired it once
+in ten runs. It is not a settle problem either, since ten runs at a 2000ms glossary settle fired
+it twice. The gate is deliberately left strict at `threshold: 0` rather than tuned to swallow it,
+because three pixels of slack is also enough slack to hide the 52px footer regression that got the
+first attempt reverted.
+
+### Em dashes, both files at zero
+
+The three left in this file from the 2026-08-28 entry are now colons. Only the punctuation
+changed; those entries are frozen history and the wording is untouched.
+
+Removing the dead rules also orphaned two CSS comments that carried em dashes, and a third and
+fourth that carried none. All four are gone with the rules they described. Two more em dashes
+survived in comments attached to live rules, at the `.labrow` height override and the mobile type
+floors, and both are now colons. The fragment and this file are both at zero.
+
 ### Closed this session, with the check that closed each one
 
 | Item | Closed because |
@@ -824,27 +899,16 @@ binary.
 | Page title | Set to "Measuring Shoreline Erosion in Eastern North Carolina", and Dylan has confirmed it stays. |
 | Favicon | Wired in both places: `route.ts` emits the `<link rel="icon">` on the fragment wrapper, and `layout.tsx` carries `icon: '/images/favicon.png'` for the gate and scaffold pages. The file is present. |
 | em contrast | Closed by the `--em` change above. |
-| Dead CSS, as originally framed | The sweep ran and 72 rules are gone. The item does not close outright, because a measured residue is left. It is narrowed and carried forward as open item 1. |
+| Dead CSS | Closed. The 72-rule sweep ran, and the 33 rules it left behind were finished off later the same day under the same render gate. Zero dead selectors remain. See "The sweep is finished" below. |
 
 ### Open
 
 Checked against the page, `CLAIMS.md` and production on 2026-09-18.
 
-1. **Dead CSS, residue after the sweep.** 21 rules across 15 selectors still match nothing.
-   Cross-checking every selector in the fragment's style blocks against its markup and script,
-   with base64 and SVG path data excluded, leaves `.stats`, `.lrow`, `.lrow .nm`, `.cred`,
-   `#heroArt`, `.herolab`, `.callout`, `.callout .txt`, `.labctl`, `.labctl-in`,
-   `.labctl-in::after`, `.labside`, `.labside button`, `.labside .labctl-in` and
-   `.labside button.reset`. `.labside` alone accounts for 15 occurrences, all inside the style
-   block and none in markup. `#ncPts` also survives, not as a rule of its own but as a dead
-   component inside selector groups whose other tokens are live, so it cannot be removed by
-   deleting whole rules.
-
-   The likely cause is the sweep's own keep-rule. It keeps any selector whose token appears
-   anywhere in the fragment, and if that search ran over the whole file rather than over markup
-   and script alone, every selector matched itself inside its own stylesheet and nothing in this
-   family could ever be pruned. Whoever picks this up should confirm that before re-running, and
-   should split the mixed `#ncPts` groups by hand rather than by rule deletion.
+1. **Dead CSS. Closed, later the same day.** The residue is gone and the diagnosis that was
+   guessed at here has been settled by measurement. See "The sweep is finished" below for the
+   numbers and the method. Nothing dead is left: every selector in the fragment that still
+   matches nothing is one the keep-rule requires, and there are 49 of those.
 
 2. **The Federation-priorities caveat still has no home.** Verified absent from the page prose.
    Removing the interactive's captions took out the only place saying the Federation's own

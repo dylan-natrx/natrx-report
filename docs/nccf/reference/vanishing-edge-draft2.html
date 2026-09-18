@@ -84,10 +84,8 @@ em{font-style:normal;color:var(--em)}
   line-height:.84;letter-spacing:-.03em}
 .stats .v.t{color:var(--tint)}
 .stats .k{color:var(--ink-45);margin-top:12px;line-height:1.7}
-@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
 .dec.in i{transform:scaleY(1)}
 .ladder.in .lrow .tk b{width:var(--w)}
-@media(max-width:640px){.lrow{grid-template-columns:1fr 62px}.lrow .nm{grid-column:1/-1}}
 
 .pull{margin:0;padding:15vh var(--gut) 15vh calc(var(--rail) + var(--gut));
   background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
@@ -101,7 +99,6 @@ em{font-style:normal;color:var(--em)}
 
 footer{padding:13vh 0 16vh;border-top:2px solid var(--ink);margin-top:8vh}
 .cred .k{color:var(--ink-45);margin-bottom:9px}
-@media(max-width:760px){.cred{grid-template-columns:repeat(2,1fr)}}
 
 #scrim{position:fixed;inset:0;background:rgba(18,29,84,.42);opacity:0;pointer-events:none;
   transition:opacity .4s;z-index:48}
@@ -158,10 +155,6 @@ h1,h2,.closing blockquote{
 .callout .n{-webkit-mask-image:var(--screen15);mask-image:var(--screen15);-webkit-mask-size:var(--tile15) var(--tile15);mask-size:var(--tile15) var(--tile15)}
 .figure svg,.dt{filter:url(#tb)}
 
-/* hero label */
-#heroArt{opacity:.9;right:-6vw;width:62vw}
-@media(max-width:1080px){.herolab{position:static;text-align:left;margin-top:28px}}
-
 /* duotone photo */
 .dt{display:block;width:100%;height:auto}
 .plate{margin:52px 0 14px}
@@ -169,15 +162,12 @@ h1,h2,.closing blockquote{
 .band .dt{width:100%}
 
 /* callout number */
-.callout{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;
-  margin:8vh 0 0;padding-top:26px;border-top:3px solid var(--ink)}
 .callout .n{font-family:'Darker Grotesque',sans-serif;font-weight:800;
   font-size:clamp(110px,17vw,240px);line-height:.72;letter-spacing:-.05em;color:var(--tint);
   mix-blend-mode:multiply}
 .callout .n small{font-size:.32em}
 .callout .txt .lead{font-family:'Darker Grotesque',sans-serif;font-weight:600;
   font-size:clamp(20px,2.2vw,29px);line-height:1.06;letter-spacing:-.02em;margin:0 0 14px}
-@media(max-width:760px){.callout{grid-template-columns:1fr;gap:6px}.callout .txt{padding-top:0}}
 
 /* the one ink field */
 /* the ink field, printed in two plates */
@@ -208,7 +198,7 @@ footer{background:var(--ink);color:var(--paper);margin:10vh calc(-1 * var(--gut)
 footer::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.1;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='q'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23q)'/%3E%3C/svg%3E")}
 footer .cred .k{color:rgba(243,241,244,.5)}
-@media(prefers-reduced-motion:reduce){.decbar i,.scale .bfill{transition:none}}
+@media(prefers-reduced-motion:reduce){.scale .bfill{transition:none}}
 /* stock */
 :root{--paper:#FAFAFA}
 html,body{background:#FAFAFA}
@@ -234,20 +224,20 @@ html,body{background:#FAFAFA}
 #ncBoxes rect{fill:var(--tint);fill-opacity:0;stroke:var(--tint);stroke-width:1.4;
   opacity:0;transition:opacity .5s ease}
 #ncBoxes{display:none}
-#ncPts,#ncFast,#ncLine{opacity:0;transition:opacity .8s ease}
+#ncFast,#ncLine{opacity:0;transition:opacity .8s ease}
 .lab.s2 #ncLine{opacity:1}
 .lab.s2 #ncFast{opacity:1}
 /* solid steps of one ink, so overlapping points do not accumulate */
-#ncPts circle,#ncFast circle{fill:#C7C9D5}
-#ncPts circle.e1,#ncFast circle.e1{fill:#F7D2C7}
-#ncPts circle.e2,#ncFast circle.e2{fill:#F5C3B4}
-#ncPts circle.e3,#ncFast circle.e3{fill:#F09377}
-#ncPts circle.e4,#ncFast circle.e4{fill:var(--alert)}
+#ncFast circle{fill:#C7C9D5}
+#ncFast circle.e1{fill:#F7D2C7}
+#ncFast circle.e2{fill:#F5C3B4}
+#ncFast circle.e3{fill:#F09377}
+#ncFast circle.e4{fill:var(--alert)}
 #ncSweep{opacity:0}
 .lab.sweeping #ncSweep{opacity:1}
 .labnote{margin-top:16px;max-width:56ch;color:var(--ink-70);line-height:1.85;min-height:3.6em}
 @media(prefers-reduced-motion:reduce){
-  #ncBoxes rect,#ncPts,#ncFast,#ncCorridor .corr,#ncLand,#ncTowns{transition:none}}
+  #ncBoxes rect,#ncFast,#ncCorridor .corr,#ncLand,#ncTowns{transition:none}}
 
 /* photos run as straight editorial photography */
 .plate img,.band img{display:block;width:100%;height:auto}
@@ -265,8 +255,8 @@ h1,h2,.closing blockquote{-webkit-mask-image:none;mask-image:none;
 h1,h2{filter:url(#tb)}
 h1 em{font-style:normal}
 /* graphics get a bleed you can actually see */
-.figure svg,.sgnum,.sgsplit b{filter:url(#tbInk)}
-#ncBoxes,#ncPts,#ncFast{filter:url(#tbInk)}
+.figure svg,.sgnum{filter:url(#tbInk)}
+#ncBoxes,#ncFast{filter:url(#tbInk)}
 #ncLine{filter:none}
 
 /* ---------- the one supergraphic ---------- */
@@ -359,7 +349,7 @@ footer{margin-left:calc(-1 * (var(--rail) + var(--gut)));margin-right:calc(-1 * 
   border-top:0}
 .labnote p{margin:0;max-width:74ch;font-size:17px;line-height:1.5;color:rgba(250,250,250,.9);
   font-family:'Familjen Grotesk',system-ui,sans-serif;text-transform:none;letter-spacing:0}
-@media(max-width:640px){.labctl{position:static;flex-direction:row;flex-wrap:wrap;padding:14px}
+@media(max-width:640px){
   .labnote{padding:20px 16px}}
 /* map ground */
 #ncWater{fill:var(--ink);opacity:.17}
@@ -393,19 +383,14 @@ footer{margin-bottom:0}
 .sg::before,.labhead::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
   background:var(--ink);filter:url(#tbRule)}
 .labhead{position:relative}
-.decfoot::before,.scale .srow::before{content:"";position:absolute;left:0;right:0;top:0;height:1.5px;
+.scale .srow::before{content:"";position:absolute;left:0;right:0;top:0;height:1.5px;
   background:var(--ink);opacity:.5;filter:url(#tbRule)}
-.decfoot,.scale .srow{position:relative}
+.scale .srow{position:relative}
 .labstage{border-color:transparent;position:relative}
 .labstage::after{content:"";position:absolute;inset:0;pointer-events:none;
   border:1px solid var(--ink-22);filter:url(#tbRule)}
 .pull{margin-top:11vh}
 #b2 .pull{margin-top:12vh}
-/* the controls sit in a panel on the map */
-.labctl{left:20px;top:20px}
-@media(max-width:640px){.labctl{position:static;padding:0}
-  .labctl-in{min-width:0;background:none;padding:14px}
-  .labctl-in::after{border:0}}
 /* photos sit on the page like prints, with an inked shadow */
 .plate{position:relative;margin:56px 0 16px}
 .plate img{position:relative;z-index:1;transform:rotate(var(--rot,-0.7deg));display:block;width:100%}
@@ -469,14 +454,8 @@ footer{margin-bottom:0}
 .labstage svg{height:100%;width:100%;object-fit:cover}
 @media(max-width:900px){
   .labrow{grid-template-columns:1fr}
-  .labside{border-right:1px solid var(--ink-22);border-bottom:0}
   .labstage{border-left:1px solid var(--ink-22)}
 }
-/* controls in the side column keep their mono voice */
-.labside button{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;
-  text-transform:uppercase;padding:10px 13px;cursor:pointer;text-align:left;
-  background:none;color:var(--ink);border:1.5px solid var(--ink-22);
-  transition:background .22s,color .22s,border-color .22s}
 .labstage{overflow:hidden}
 .labstage svg{display:block;height:100%;width:100%}
 
@@ -564,7 +543,6 @@ footer{margin-bottom:0}
   #b1{padding-top:12vh}
 }
 
-
 /* The stacked interactive (≤900) must own its height: a late
    .labrow{height:min(74vh,700px)} otherwise wins by source order and
    crushes the stage’s aspect ratio (verified: clipped MANTEO at 768). */
@@ -574,24 +552,19 @@ footer{margin-bottom:0}
 }
 
 /* ---------- amendment 05 / task 2.3: the interactive ---------- */
-/* One-line step labels at every width (STATUS open item 7): slightly
-   tighter tracking + nowrap. Intentional, declared 1440 delta — the label
-   wrapped there too. */
-.labside button{white-space:nowrap;letter-spacing:.1em}
 @media(max-width:640px){
   .labstage{aspect-ratio:4/5}
-  .labside .labctl-in{padding:14px 16px 12px}
-  .labside button{min-height:44px;font-size:11px;padding:10px 12px}
+
   /* a late .labrow{height:min(74vh,700px)} outlives the 900px height:auto
-     and crushes the stacked note to a clipped strip — free the row here */
+     and crushes the stacked note to a clipped strip: free the row here */
   .labrow{height:auto}
-  .labside{overflow:visible}
+
   .labside .labnote{padding:16px 16px 18px;overflow:visible;flex:none}
   .labside .labnote p{font-size:14px;line-height:1.45}
   /* tap targets for the fixed chrome and inline glossary links */
   #glossBtn{padding:16px 0;margin:-4px 0;min-height:44px}
   .gtabs button{padding:14px 0 16px;margin:-2px 0 0}
-  .labside button.reset{min-height:44px;padding:8px 0}
+
   #rail a{padding-top:15px;padding-bottom:15px}
   #glossClose{padding:12px 14px;margin:-12px -14px}
   .glosslink{padding:10px 2px;margin:-10px -2px}
@@ -630,7 +603,7 @@ footer{margin-bottom:0}
 @media(max-width:640px){
   section{padding:7vh 0}
   #b1{padding-top:9vh}
-  /* task 2.2: deliberate mobile type — the clamp floors were desktop guards */
+  /* task 2.2: deliberate mobile type: the clamp floors were desktop guards */
   h1{font-size:38px;line-height:.88}
   h2{font-size:27px;line-height:.95}
   .pull blockquote{font-size:30px;line-height:.95}
