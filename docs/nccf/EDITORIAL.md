@@ -380,3 +380,39 @@ map. Unresolved.
 
 **The colour is the Natrx mark's own orange**, `--alert:#EB5C31`, already on the page in the footer
 logo. Dylan's instruction: make them orange in a register that agrees with what we have.
+
+---
+
+## The Federation caveat, placed 2026-09-18
+
+Removing the interactive's captions took out the only place on the page saying the Federation had
+a hand in which stretches got measured. The 2026-09-02 SOW correction requires both halves of that
+sequence wherever the page describes it, and the Beat 4 prose carried only the screening half.
+Boyd's "Now we have the shorelines prioritized" is about the output, not the inputs, so it does
+not cover the gap.
+
+**Placed in Beat 4, verbatim, at the end of the two-pass description and immediately before the
+interactive:**
+
+> The wide pass narrowed the coast to the stretches worth a closer look. Which of those got
+> measured in detail was settled with the Federation.
+
+**Why there.** That is where the method is described, and it is as close as the running prose gets
+to where the information was lost: the caption that used to carry it sat in the interactive's 02
+Satellite note, which begins a few lines below. The line closes the two-pass explanation by saying
+how the reader gets from the first pass's output to the second pass's input.
+
+**Why this line and not the previous one.** A first attempt on 2026-09-18 was withdrawn before it
+reached the page. It read "Which stretches got measured was the Federation's call, shaped by where
+it already works," which made the Federation the sole decider and so restated, from the other
+side, the claim withdrawn on 2026-09-02. Its second clause had no source in `CLAIMS.md` at all.
+
+This line passes both tests. It carries the screening half and the coordinated half, it makes
+neither party the sole decider ("narrowed" rather than "selected", "settled with" rather than
+"decided by"), and both clauses trace to confirmed rows. It is close to the correction's own
+publishable wording: *the first pass pointed to the areas worth measuring, and the final list was
+settled with the Coastal Federation. Both halves, together.*
+
+It also stays clear of the one claim still blocked. "Worth a closer look" is about where to spend
+the measuring budget, not about predicting rates, so the r² of 0.038 is untouched, and the
+paragraph further down that states the under-four-percent figure still reads correctly against it.

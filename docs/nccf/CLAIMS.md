@@ -380,6 +380,7 @@ decimal and keep "nearly half" is Dylan's editorial call. The page was not touch
 | Coverage expanded from 25 planned subprojects to 39 | CONFIRMED |
 | "The wide screen did not select the 39 survey areas" | **WITHDRAWN.** An overstatement written from interview fragments and never checked against the contract. It was enforced for three sessions. |
 | That the wide pass predicts erosion rates | **STILL BLOCKED.** Unchanged by the above. r² = 0.038 governs, and the page states it. |
+| **On the page, Beat 4, placed 2026-09-18:** *"The wide pass narrowed the coast to the stretches worth a closer look. Which of those got measured in detail was settled with the Federation."* | **CLEARED against this table.** Clause one rests on the wide-pass row above, and on SOW Phase II, "where further analysis is warranted." Clause two rests on the coordination row, and on SOW Phase IV verbatim. Both halves present, neither party the sole decider, nothing asserted that this register does not carry. Does not touch the blocked prediction claim: "worth a closer look" is about where to spend the measuring budget, not about predicting rates. |
 
 
 ---
