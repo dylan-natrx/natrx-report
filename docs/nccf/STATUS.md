@@ -1,6 +1,7 @@
 # NCCF: Status
 
-**Last updated 2026-09-18, end of session 8 (halftone, rail, contrast, dead CSS, share card).**
+**Last updated 2026-09-18, end of session 8 (halftone, rail, contrast, dead CSS, share card,
+and then the page opened, noindexed and deployed).**
 
 **The open list that matters is the one at the bottom of this file, under session 8.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
@@ -901,6 +902,153 @@ floors, and both are now colons. The fragment and this file are both at zero.
 | em contrast | Closed by the `--em` change above. |
 | Dead CSS | Closed. The 72-rule sweep ran, and the 33 rules it left behind were finished off later the same day under the same render gate. Zero dead selectors remain. See "The sweep is finished" below. |
 
+### The page is open, noindexed, and live, 2026-09-18 afternoon
+
+**The gate is off.** The nccf tenant was `accessMode: 'gated'`, so the root answered 307 to
+`/login`. It is now `public`, following the precedent set when BOP was ungated on 2026-07-15:
+`accessMode` to public and `passwordHash` to null, with a dated comment. The hash stays in the
+history of `tenants.ts` if the page ever needs re-gating, and re-gating is that one registry entry
+rather than anything in the gate code. Commit `f83d0c1`.
+
+None of the auth machinery was removed. `gate.ts`, `credentials.ts`, `/api/auth/login` and every
+project's login UI are all still there, nccf's included. The middleware matcher is unchanged: it
+already excluded `images`, which is why the share card serves without a cookie and why nothing had
+to be widened to make that check pass.
+
+**Every tenant on the platform was checked, including the ones expected to stay put.** By Host header against a local server,
+before and after, and again against production after the deploy:
+
+| Host | Before | After | Verdict |
+|---|---|---|---|
+| `bop.natrx.report` | 200 | 200 | unchanged, still public |
+| `demo.natrx.report` | 307 to /login | 307 to /login | unchanged, still gated |
+| `nccf.natrx.report` | 307 to /login | 200, no redirect | the intended change |
+| `natrx.report` | 302 to natrx.io | 302 to natrx.io | unchanged |
+| `www.natrx.report` | 302 to natrx.io | 302 to natrx.io | unchanged |
+| `nosuch.natrx.report` | 404 | 404 | unchanged |
+
+demo's `/login` still serves 200, so its gate is intact rather than merely redirecting into a
+hole. The diff touches only the nccf object, so the bop and demo entries are byte-identical to
+what they were, which is the strongest form of that check.
+
+**noindex until the Federation announces.** Commit `71fd022` adds
+`<meta name="robots" content="noindex, nofollow">` to the wrapper alongside the share metadata.
+Open access without it would let search engines index the story before the Federation has
+announced it.
+
+The removal condition is in the comment above the block, and it is one line: delete the robots
+line at launch and nothing else in that file changes.
+
+This deliberately does not block unfurling. Slack, iMessage and LinkedIn read og: tags and ignore
+robots, so a shared link still previews with the card. noindex governs search engines, not
+unfurlers. The og: tags were not touched: the diff is one meta line plus a comment, and the served
+document still carries all nine share tags exactly as before.
+
+**Live, verified against production.** Deployment `dpl_CFzB5DbWvJtxhM4SV1aYGT88B9kW`, readyState
+READY, target production, branch main, commit SHA `71fd0229dd782efe9971a86a65cdfc8771771fb5`,
+which matches local HEAD. The SHA came from the Vercel API because `vercel inspect` does not print
+it. Checked after READY, not off a queued or building state.
+
+- `nccf.natrx.report/` returns 200 with zero redirects and serves the story.
+- `nccf.natrx.report/images/og-nccf.png` returns 200 as `image/png` with no cookie.
+- All four share-card tags resolve against the real host:
+  `og:image` is `https://nccf.natrx.report/images/og-nccf.png`, with width 1200, height 630 and
+  the alt text. The URL in the tag fetches 200 `image/png`.
+- The robots meta is present.
+- No `localhost` appears anywhere in the served head, which is the failure mode the
+  request-origin logic exists to prevent.
+
+### The Federation caveat was not placed, and why
+
+The line supplied for Beat 4 was to be applied exactly as written, with an instruction to stop and
+flag rather than resolve if it collided with `CLAIMS.md`. It collides, so it was not placed and no
+alternative was drafted.
+
+The line: *"Which stretches got measured was the Federation's call, shaped by where it already
+works. What was new was measuring every one of them to the same standard, including the places
+nobody could reach on foot."*
+
+Three collisions, all against rows the register marks CONFIRMED or WITHDRAWN:
+
+1. **`CLAIMS.md` line 307, CONFIRMED:** the change analysis identified the areas addressable for
+   the granular pass, per SOW Phases II and III. "Was the Federation's call" writes the wide pass
+   out of a selection the contract gives it.
+2. **`CLAIMS.md` line 308, CONFIRMED:** SOW Phase IV says the final selection was determined *in
+   coordination with* NCCF. "The Federation's call" makes NCCF the decider rather than a
+   co-decider.
+3. **`CLAIMS.md` line 310, WITHDRAWN:** "the wide screen did not select the 39 survey areas" was
+   withdrawn on 2026-09-02 as an overstatement enforced for three sessions. Attributing the
+   selection wholly to the Federation is that same withdrawn claim from the other side.
+
+The 2026-09-02 correction is explicit that the publishable form is both halves together: the first
+pass pointed to the areas worth measuring, and the final list was settled with the Federation. It
+lists "the screen alone picked the sites, with no client role" as not publishable, and the supplied
+line is the mirror of that. The caption this line was meant to replace carried both halves, as
+recorded above under the 03 Aerial note.
+
+Separately, **"shaped by where it already works" has no source.** No row in `CLAIMS.md` supports
+it. The nearest thing is this file's own paraphrase, "the Federation's own priorities," which is a
+summary of SOW Phase IV coordination rather than a claim about where the Federation already
+operates. As written it would put a new factual assertion about how NCCF chose onto the page
+without a source behind it.
+
+**The open item stays open.** The caveat still has no home in Beat 4.
+
+### The Jacob contradiction, resolved as stale rather than wrong
+
+Investigated, not edited. The finding is that the contradiction is real but misattributed, and
+that nothing on the page is at risk.
+
+**Jacob did not say it.** Line 131 of `INTERVIEW-JACOB-2026-08-17.md` is the note-writer's own
+annotation under the heading "The 50 ft/yr figure in this interview," not a quotation. It reads:
+*"`CLAIMS.md` traces the figure to the Wetland Stop-Loss memo (Gulf reef projects, 15 to 150
+ft/yr), not to the NCCF dataset, which tops out near -15 ft/yr."* So it asserts a maximum rate for
+the NCCF dataset, over the 2012 to 2022 aerial pass: a rate, and a single worst case, not a total
+and not an average.
+
+**Recomputed from the repo's own 39 layers, 93,418 transects, not from either document:**
+
+| Quantity | Value |
+|---|---|
+| Peak erosion rate | **-45.9074 ft/yr**, Navy Shell, transect id 200, r² = 0.982 |
+| The six worst transects | all Navy Shell |
+| Transects at or beyond -15 ft/yr | **423**, 0.45% of all transects |
+| Transects at or beyond -45 ft/yr | 2 |
+
+**The interview figure is wrong, not a different quantity under a different name.** It states the
+dataset maximum, and the dataset maximum is 3.06 times larger. 423 transects exceed the figure it
+gives as the ceiling.
+
+**It is stale rather than independently wrong.** `CLAIMS.md` line 37 already records this: an
+earlier version of the register carried -15, that was corrected to -45.91 on 2026-08-27, and the
+interview file was written 2026-08-17 and still quotes the pre-correction register. Jacob's own
+contribution on magnitude was that he is "desensitized to like fifty feet" and that some NC areas
+approach Louisiana rates, which sits with a 46 ft/yr peak and not with 15.
+
+**Nothing on the page is falsified, because the figure is not correct.** Had it been, it would have
+taken out Beat 5's "at the worst single spot measured, the marsh edge pulled back about 46 feet in
+one year," the stat tile reading "the worst spot measured 45.9 ft," and the to-scale comparison
+against the 0.7 ft typical spot, whose whole point is the ratio.
+
+**Every page figure that can be recomputed reconciles.** 76,052 eroding points, exact. Peak 45.9 ft,
+exact. Median retreat 0.72 ft, 8.6 inches, against the page's "eight and a half inches" and its
+0.7 ft tile, on the page's own denominator of all 93,418 spots. Four in ten past 1 ft/yr, 40.68%.
+1.96% past 10 ft/yr, exact.
+
+**Bonus: the -45.91 and -45.60 reconciliation closes.** They were never competing values for one
+quantity. In `339_navy_shell.geojson`, `land_change_ft_per_year` bottoms out at **-45.9074** on
+transect 200 with r² 0.982, while `epr_ft_per_year`, the End Point Rate, bottoms out at
+**-45.6038** on transect 210 with r² 0.944. `CLAIMS.md` line 246 records "-45.60 ft/yr, r² =
+0.944," and that r² belongs to transect 210, so the register read the End Point Rate column for
+one transect and the regression column for another. There is no data disagreement to reconcile.
+
+**One observation outside the ask.** The page's 43.44% concentration figure did not reproduce
+under either obvious reading: a top tenth of eroding transects by count gives 41.22%, and a top
+tenth of eroding shoreline by length gives 45.81%. The published 43.44% sits between them, so a
+third method is in play. The prose hedge, "nearly half," holds under all three, so this is not a
+correction, only a note that the method behind that specific number is not written down anywhere
+found.
+
 ### Open
 
 Checked against the page, `CLAIMS.md` and production on 2026-09-18.
@@ -910,38 +1058,42 @@ Checked against the page, `CLAIMS.md` and production on 2026-09-18.
    numbers and the method. Nothing dead is left: every selector in the fragment that still
    matches nothing is one the keep-rule requires, and there are 49 of those.
 
-2. **The Federation-priorities caveat still has no home.** Verified absent from the page prose.
-   Removing the interactive's captions took out the only place saying the Federation's own
-   priorities helped set which stretches were measured. The 2026-09-02 SOW correction requires
-   both halves wherever the page describes the sequence, and the Beat 4 prose carries only the
-   screening half.
+2. **The Federation-priorities caveat still has no home. Still open.** A line was supplied for
+   Beat 4 on 2026-09-18 and was not placed, because it collides with three `CLAIMS.md` rows: the
+   wide pass identifying the addressable areas (line 307, CONFIRMED), the final selection being
+   made in coordination with NCCF rather than by it (line 308, CONFIRMED), and the withdrawn
+   single-half claim (line 310). Its second clause, about where the Federation already works, has
+   no source in the register at all. See "The Federation caveat was not placed" above. Needs a
+   line carrying both halves of the sequence, with the second clause sourced or dropped.
 
 3. **The zone count is a property of our rendering.** `CLAIMS.md` line 367 still carries it as
    PENDING with the method note. The miles and the 1.96% are the defensible forms.
 
-4. **Not deployed.** Confirmed from outside on 2026-09-18:
-   `https://nccf.natrx.report/images/og-nccf.png` returns 404 while the root returns a 307 to
-   `/login`, so the gate is live but the deployed build predates `312c9e0`. Everything from
-   sessions 6, 7 and 8 is on `main` and none of it is on the site.
+4. **Not deployed. CLOSED 2026-09-18.** Pushed and live. Production deployment
+   `dpl_CFzB5DbWvJtxhM4SV1aYGT88B9kW` reached READY on commit
+   `71fd0229dd782efe9971a86a65cdfc8771771fb5`, matching local HEAD, and
+   `nccf.natrx.report` serves the page at 200 with no redirect. Everything from sessions 6, 7 and
+   8 is on the site.
 
-5. **The share card cannot unfurl while the page is gated.** Tagged for launch, not now. A request
-   for the public URL gets a 307 to `/login`, and `/login` carries no `og:` tags at all, so an
-   unfurler sees nothing. Unfurlers do not send cookies, so a session does not help.
-   **Decision taken 2026-09-18: leave `/login` bare for now.** Putting share tags on the login page
-   would unfurl the finding to anyone holding a forwarded link, before the Montefiore gate clears.
-   Revisit when access opens, at which point the card starts working on its own with no further
-   change.
+5. **The share card could not unfurl while the page was gated. CLOSED 2026-09-18, retired by
+   the gate removal.** The 307 to `/login` is gone, so an unfurler reaching the public URL now
+   gets the document and its og: tags directly. The 2026-09-18 decision to leave `/login` bare is
+   moot: nothing is sent there any more. Verified live, all four og:image tags resolving against
+   `https://nccf.natrx.report` and the image itself fetching 200 as `image/png`. noindex keeps
+   search engines out without touching unfurling.
 
-6. **The Jacob interview still contradicts `CLAIMS.md` on the peak rate.**
-   `INTERVIEW-JACOB-2026-08-17.md` line 131 says the NCCF dataset "tops out near -15 ft/yr".
-   `CLAIMS.md` line 37 marks that figure wrong and carries the peak as -45.91. Note for anyone
-   searching: that interview file lives outside this repo, in `NCCF x Natrx/files/`, so a
-   repo-only grep reports the contradiction as fixed when it is not.
+6. **The Jacob interview's -15 ft/yr. Investigated 2026-09-18, Dylan's editorial call.** The
+   figure is wrong and is not Jacob's: line 131 is the note-writer's annotation quoting a
+   superseded version of `CLAIMS.md`. Recomputed peak is -45.9074 ft/yr and 423 transects exceed
+   -15. Nothing on the page is falsified. The interview file sits outside this repo, at
+   `NCCF x Natrx/files/`, so a repo-only grep still reports it fixed. Fixing that file is
+   Dylan's call, not a page change. See "The Jacob contradiction" above.
 
-7. **The -45.91 and -45.60 reconciliation.** `CLAIMS.md` line 255 still logs it. The register
-   carries -45.91 recomputed from the public ArcGIS webmap; the repo's derived layer gives -45.60.
-   The page says "about 46 feet", which survives either figure, so this blocks print rather than
-   the page.
+7. **The -45.91 and -45.60 reconciliation. CLOSED 2026-09-18.** There was never a
+   disagreement. -45.9074 is the minimum of `land_change_ft_per_year` on transect 200;
+   -45.6038 is the minimum of `epr_ft_per_year`, the End Point Rate, on transect 210. Two
+   different statistics on two different transects. `CLAIMS.md` line 255 can drop its
+   "reconcile before print," and line 246 should say which column it is quoting.
 
 8. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
    answered.
