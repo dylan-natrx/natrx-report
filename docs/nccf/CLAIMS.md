@@ -27,7 +27,7 @@ Numbers that cannot be sourced do not get published, however good they sound.
 | Transects retreating faster than 2 ft/yr | 23.5% | CONFIRMED | |
 | Transects retreating faster than 5 ft/yr | 8.3% | CONFIRMED | |
 | 5th-percentile transect | -6.77 ft/yr | CONFIRMED | |
-| **Fastest 10% of eroding locations account for 43.44% of all land lost** | **43.44%** | **REPRODUCIBLE, but the method does not match the sentence it is printed under. Dylan's call. See "The 43.44% method, reproduced 2026-09-18" below.** | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. |
+| **The worst tenth of the eroding shoreline accounts for 45.81% of all land lost** | **45.81%** | **CONFIRMED and published 2026-09-20, replacing 43.44%.** Method of record below. Regenerate with `node scripts/nccf-concentration.mjs`. | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. |
 | Study period | 2012–2022 | CONFIRMED | |
 | Resolution | 1 meter | CONFIRMED | |
 | Temporal data points | 5 (2012, 2014, 2016, 2019, 2022) | CONFIRMED | Nick 07-22. Intended lower bound ~2010, in practice 2012. |
@@ -347,7 +347,7 @@ for his definition, or state what the transects cover is an editorial call.
 
 ---
 
-## The 43.44% method, reproduced 2026-09-18
+## The concentration figure: 45.81% replaces 43.44%, decided 2026-09-20
 
 Regenerate with `node scripts/nccf-concentration.mjs`. Committed so this is never derived from
 scratch a third time.
@@ -394,12 +394,12 @@ truer at 45.81 than at 43.44. "One tenth of the eroding shoreline" becomes liter
 length weighting, where under the published method it is 8.23% of the shoreline described as a
 tenth.
 
-**Methods tested and rejected**, all against the target 43.44:
+**Methods tested**, all against the then-published 43.44:
 
 | Method | Result |
 |---|---|
-| Eroding, rank by rate, top tenth by count, loss = rate (published) | **43.44** |
-| Eroding, rank by rate, top tenth by length, loss = rate x width | 45.81 |
+| Eroding, rank by rate, top tenth by count, loss = rate (published until 2026-09-20) | **43.44** |
+| Eroding, rank by rate, top tenth by length, loss = rate x width **(published from 2026-09-20)** | **45.81** |
 | Eroding, rank by rate, top tenth by count, loss = rate x width | 41.22 |
 | Eroding, rank by rate, top tenth by length, loss = rate | 48.41 |
 | Eroding, rank by total loss rather than rate, four variants | 32.57 to 46.90 |
@@ -413,8 +413,25 @@ The r squared 0.5 row also confirms the method independently: this register's ow
 says "filtering to points with r² >= 0.5, the top decile still accounts for ~39%," and equal
 weighting at that threshold gives 39.34%.
 
-**Not decided here.** Whether to republish 45.81, keep 43.44 with a method note, or drop the
-decimal and keep "nearly half" is Dylan's editorial call. The page was not touched.
+**Decided 2026-09-20: the page publishes 45.81%.** 43.44 measures neither land nor shoreline,
+while the sentence above the figure claims both. 45.81 is the top tenth of eroding shoreline by
+length with loss as rate times width, which is what the prose describes, and it makes "one tenth
+of the eroding shoreline" literally true where the old method made it 8.23%.
+
+**Method of record.** Rank the 76,052 eroding transects by rate, most negative first. Walk down
+that ranking accumulating `rect_width` until 10% of the total eroding shoreline length is covered,
+which takes 9,208 transects and 127.8 of the 1,278 miles. Sum `rate x rect_width` over those and
+divide by the same product summed over all eroding transects. That is 45.8103%, and splitting the
+boundary transect rather than excluding it moves it by 0.0001 points. Regenerate with
+`node scripts/nccf-concentration.mjs`.
+
+**"Nearly half" holds**, as it did at 41.22 and 43.44. It is truer at 45.81 than at either.
+
+**Still carrying the old curve:** `nccf-figdata.json`, which sits outside this repo in the
+Marketing folder, holds the ten-decile equal-weight curve starting 43.44. Nothing on the page
+reads it at runtime, so it is a stale working artifact rather than a live inconsistency, but it
+should be regenerated before anyone quotes it again. The length-weighted curve is in the table
+above.
 
 ---
 
