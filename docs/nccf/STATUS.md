@@ -1,9 +1,9 @@
 # NCCF: Status
 
-**Last updated 2026-09-18, end of session 8 (halftone, rail, contrast, dead CSS, share card,
-the page opened, noindexed and deployed, then the 43.44% method and the Federation caveat).**
+**Last updated 2026-09-20, end of session 9 (the CTO review: 2,900 miles challenged, the
+concentration figure changed to 45.81%, three copy corrections, SASMI expanded).**
 
-**The open list that matters is the one at the bottom of this file, under session 8.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
+**The open list that matters is the one at the bottom of this file, under session 9.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
 Read this first. It says where the page actually is and what is stale.
 
@@ -1184,3 +1184,132 @@ Checked against the page, `CLAIMS.md` and production on 2026-09-18.
    launch date.
 
 11. **Insync and `.git`.** The debris is swept, the cause is not. See the housekeeping note above.
+
+---
+
+## Session 9, 2026-09-20: the CTO review
+
+Nick reviewed the live page. Four things came out of it, three applied and one left open because
+the data cannot settle it.
+
+### 2,900 miles is not computable from our data, and neither is 2,500
+
+Regenerate with `node scripts/nccf-shoreline-length.mjs`. Full record in `CLAIMS.md`.
+
+**Nick is the source of the 2,900 he is now correcting.** `CLAIMS.md` recorded it as his: "25
+desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features,
+800+ sq mi." He has now marked it wrong twice and said 2,500. So this is the CTO revising his own
+figure rather than the page disagreeing with the data.
+
+| Measure | Miles |
+|---|---|
+| `rect_width` summed over all 93,418 transects | **1,550.8** |
+| `rect_width` over the 76,052 eroding transects | 1,278.3 |
+| `rect_width` excluding the 401 null-geometry features | 1,538.4 |
+| those 401 alone | 12.4 |
+| geodesic polyline, within-run gaps only | 1,724.6 |
+| the same, plus half a spacing at each of 3,426 run ends | 1,795.9 |
+
+**No subset reaches 2,500.** Summing `rect_width` over every transect is the ceiling at 1,550.8
+miles and every subset is smaller by construction. 2,500 needs 1.61 times that, 2,900 needs 1.87.
+
+**The two methods disagree by about 11 percent**, because `rect_width` has a median of 95.1 feet
+against a median geodesic spacing of 109.3. The rectangles do not tile the shore continuously.
+
+**One near-miss, recorded so nobody reaches for it.** The polyline with a 5,000 foot break
+tolerance returns 2,467.9 miles, which looks like 2,500 and is not shoreline: it includes 653
+miles of 1k to 5k jumps and 1,672 miles of 5k to 20k jumps connecting disjoint runs across open
+water. 96.35% of consecutive gaps are under 200 feet.
+
+**The likely explanation, unconfirmed.** Nick's qualifier is "including internal water features."
+A footprint measure counting the full convoluted shoreline inside the study area can legitimately
+exceed what the transects span, which would make 2,500 and 1,551 two different quantities rather
+than two answers to one question. **This needs Nick to say what his number counts.** The page
+still runs 2,900 in four places and was not touched.
+
+### The concentration figure is now 45.81%
+
+43.44 measured neither land nor shoreline while the sentence above it claimed both. 45.81 is the
+top tenth of eroding shoreline by length with loss as rate times width, which is what the prose
+describes, and it makes "one tenth of the eroding shoreline" literally true where the old method
+made it 8.23%. "Nearly half" holds, as it did at 41.22 and 43.44, and reads truer at 45.81.
+
+Changed in the page, one instance, and in `CLAIMS.md`. Method of record is in `CLAIMS.md` and
+regenerates with `scripts/nccf-concentration.mjs`. The supergraphic was measured at 390 and 1440:
+no overflow, because `.sgnum` is sized by container query against the column rather than guessed.
+
+**The interactive was not touched, and the gated question is answered.** The pass-2 map bands by
+**rate threshold**, not by contribution quartile. It is five merged paths, `r0` through `r4`, cut
+at 1, 2, 5 and 10 ft/yr, and the legend reads "shoreline retreat, feet per year, under 1 ... over
+10". 43.44 never appeared inside the interactive and was not an input to anything there, so the
+figure change leaves the banding untouched and no render-diff run was needed.
+
+The 2026-09-02 note claiming the map "landed on 43.44% independently" describes a one-off
+validation over 780 aggregated stretches, not the banding. The 30.69 to 32.33 figure from the
+2026-09-18 method table is not comparable to that check either: it binned by sequential position,
+where the check resampled every 0.75 map units and banded each run by median rate. Neither number
+has anything to do with how the map draws.
+
+**Flagged, not changed: the lead-in now disagrees with the figure.** Beat 5 still reads "Rank
+every eroding spot from fastest to slowest, and the worst tenth of them accounts for this," which
+describes the old count method. Under 45.81 the cut is the worst tenth of the shoreline, which is
+the worst 12.1% of the spots. The caption is now right and the lead-in is now wrong. Rewriting
+page copy was outside the task.
+
+**Also stale:** `nccf-figdata.json`, outside the repo, still holds the equal-weight decile curve
+starting 43.44. Nothing on the page reads it at runtime.
+
+### Three copy corrections, all Nick's, applied verbatim
+
+**Beat 5, the county clause.** "Dare County, which takes in much of the Outer Banks" pointed
+readers at ocean beaches that were never measured. The method only works on marsh and the analysis
+ran inside a buffer on an existing marsh dataset. Now "on the sound side of the Outer Banks."
+
+**Beat 4, the Natrx Assess paragraph.** The old line gave rate calculation to machine learning,
+which is wrong. The model classifies land from water; the rates come from established shoreline
+change methods. The replacement separates the two jobs. The glossary link on the first mention is
+preserved, per the editorial chrome rule.
+
+**Beat 6, one sentence deleted.** It described optimized design that was not in this engagement.
+The designs delivered here were rock baselines for CPRG comparison. The rest of the paragraph is
+intact and still closes on the permit-ceiling point.
+
+### SASMI
+
+Beat 7's first and only mention is now "the South Atlantic Salt Marsh Initiative (SASMI)". There
+were no subsequent mentions to convert.
+
+### Verification
+
+Beats 4, 5, 6 and 7 rendered at 390 and 1440. Every changed line reads in place with no overflow
+and no clipping. Reveal order is identical before and after in all four beats at both widths, with
+the same target counts, since every change was in place rather than structural.
+
+**A stale-server catch worth recording.** The first verification of the three copy corrections
+reported all three missing. The edits were correct; a plain `pkill` had not taken and the route
+was still serving the fragment it read at module load. Killed with `-9`, confirmed no `next`
+process remained, restarted, re-checked. This is the trap the handoff warns about and it does
+catch you.
+
+### Open
+
+Checked 2026-09-20.
+
+1. **2,900 miles, blocked on Nick.** The page runs it in Beat 1, Beat 4, Beat 5 and the coast band
+   caption. Nick says 2,500. Our data supports neither and caps at 1,550.8. Needs him to say what
+   his figure counts before anything on the page changes.
+2. **Beat 5's lead-in contradicts the new figure.** "The worst tenth of them" describes the
+   replaced method. Editorial call.
+3. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING with the
+   method note. The miles and the 1.96% are the defensible forms.
+4. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at
+   runtime, but it should be regenerated before anyone quotes it.
+5. **The Jacob interview's -15 ft/yr.** Investigated 2026-09-18 and wrong, but the file sits
+   outside this repo at `NCCF x Natrx/files/`, so a repo-only grep still reports it fixed.
+6. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
+   answered.
+7. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, and the
+   launch date.
+8. **noindex comes out at launch.** One line in `route.ts`, with the condition in the comment
+   above it.
+9. **Insync and `.git`.** The debris is swept, the cause is not.
