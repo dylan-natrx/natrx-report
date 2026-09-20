@@ -416,3 +416,28 @@ settled with the Coastal Federation. Both halves, together.*
 It also stays clear of the one claim still blocked. "Worth a closer look" is about where to spend
 the measuring budget, not about predicting rates, so the r² of 0.038 is untouched, and the
 paragraph further down that states the under-four-percent figure still reads correctly against it.
+
+---
+
+## Three corrections from the CTO review, 2026-09-20
+
+Applied verbatim, all three from Nick's review of the live page.
+
+**Beat 5, the county clause.** "Dare County, which takes in much of the Outer Banks" pointed
+readers at ocean beaches that were never measured. The method only works on marsh, and the
+analysis ran inside a buffer on an existing marsh dataset. Now reads "Dare County, on the sound
+side of the Outer Banks, is eroding fastest."
+
+**Beat 4, the Natrx Assess paragraph.** The old line gave rate calculation to machine learning,
+which is wrong. The model classifies land from water; the rates come from established shoreline
+change methods. The paragraph now separates the two jobs explicitly: *"A model reads every image
+and decides, pixel by pixel, what is land and what is water. The rates of retreat come from the
+same shoreline change methods coastal scientists have used for decades, and a person overrules the
+model wherever the imagery is ambiguous."* The glossary link on the first mention of Natrx Assess
+is preserved, per the editorial chrome rule.
+
+**Beat 6, one sentence deleted.** *"Natrx works to the same standard on the construction side,
+with modules sized to what the analysis calls for rather than to a default."* It described
+optimized design that was not in this engagement. The designs delivered here were rock baselines
+for CPRG comparison. The rest of the paragraph is untouched and still closes on the permit-ceiling
+point.
