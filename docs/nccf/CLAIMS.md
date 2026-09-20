@@ -87,7 +87,7 @@ For publication, still obtain a dated artifact (notebook, commit, or message) so
 | Analysis | Footprint | Resolution | Status | Notes |
 |---|---|---|---|---|
 | Change analysis (wide screen) | ~4,000 sq mi | area-based | **PENDING confirm** | Nick 07-22: "I wouldn't be surprised" it was 4,000, but "I'd have to check." The public "4,000 square mile study" figure refers to this one. |
-| Shoreline change analysis (granular) | ~800 sq mi / ~2,900 mi of shoreline | 1 meter | CONFIRMED | Nick: 25 desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features, 800+ sq mi. |
+| Shoreline change analysis (granular) | ~800 sq mi / ~2,900 mi of shoreline | 1 meter | **CHALLENGED 2026-09-20. Nick now says 2,500 and has marked 2,900 wrong twice.** Originally his own figure: "25 desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features, 800+ sq mi." Neither figure is computable from the 39 layers, which cap at 1,550.8 mi. See "2,900 miles of shoreline, challenged 2026-09-20" below. | Nick: 25 desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features, 800+ sq mi. |
 
 | North Carolina's total estuarine shoreline | **more than 12,000 miles** | **CONFIRMED, sourced 2026-08-28** | NC DEQ, Division of Coastal Management, Estuarine Shoreline Mapping Project: "the first ever continuous digital map of more than 12,000 miles of estuarine shoreline in North Carolina." **This is the state total. The 2,900 miles is what this project measured, roughly a quarter of it.** State both figures rather than publishing a computed percentage: the two counts come from different methods. Resolves the PENDING on the one-pager's 12,000 figure. |
 | Shoreline geometry | ~2,900 mi of shoreline inside ~800 sq mi | CONFIRMED (derived from two confirmed figures) | The measure of how convoluted this coast is, and the reason the granular pass is expensive. Publishable only in service of the two-pass logic. |
@@ -297,6 +297,53 @@ A Natrx OS project page for this engagement, "NC Coastal Federation Coastal Wetl
 | Contact: Drew Keeley, Solutions Specialist | Note: that page routes to sales. This one routes to press. |
 
 The one-pager is written largely in future tense ("is mapping," "will have") under a headline that says the analysis is complete. Our page is past tense for completed work, so the two will read differently by design.
+
+---
+
+## 2,900 miles of shoreline, challenged 2026-09-20
+
+Regenerate with `node scripts/nccf-shoreline-length.mjs`.
+
+**Nick has twice marked 2,900 wrong and says 2,500.** He is the source of the 2,900 in the first
+place: the row above records it as "Nick: 25 desktop analyses, 39 subprojects, ~2,900 miles of
+shoreline including internal water features, 800+ sq mi." So this is the CTO correcting his own
+earlier figure, not a dispute between the page and the data.
+
+**Neither figure is computable from the 39 layers the page is built on.**
+
+| Measure | Miles |
+|---|---|
+| `rect_width` summed over all 93,418 transects | **1,550.8** |
+| `rect_width` summed over the 76,052 eroding transects | 1,278.3 |
+| `rect_width` excluding the 401 null-geometry features | 1,538.4 |
+| the 401 null-geometry features alone | 12.4 |
+| geodesic polyline, within-run gaps only | 1,724.6 |
+| the same, plus half a spacing at each of the 3,426 run ends | 1,795.9 |
+
+**No subset reaches 2,500.** Summing `rect_width` over every transect is the ceiling at 1,550.8
+miles, and every subset is smaller by construction. 2,500 would require 1.61 times that total and
+2,900 would require 1.87 times it.
+
+**The two methods disagree with each other by about 11 percent, and that is worth knowing.**
+`rect_width` has a median of 95.1 feet while the geodesic spacing between consecutive transects has
+a median of 109.3 feet, so the rectangles do not tile the shoreline continuously. Summing them
+understates the extent the transects span.
+
+**A near-miss that is an artifact, recorded so nobody reaches for it.** Walking the polyline with a
+5,000 foot break tolerance returns 2,467.9 miles, which looks like 2,500. It is not shoreline. That
+figure includes 653 miles of 1,000 to 5,000 foot jumps and 1,672 miles of 5,000 to 20,000 foot
+jumps, which are the connector lines between disjoint runs across open water. 96.35% of consecutive
+gaps are under 200 feet and those account for 1,724.6 miles; everything above 500 feet is a jump.
+
+**The likely explanation for the gap, unconfirmed.** Nick's figure is qualified "including internal
+water features." The transects appear to be cast only where the granular analysis ran, so a footprint
+measure that counts the full convoluted shoreline inside the study area, creeks and internal features
+included, can legitimately exceed what the transect set spans. That would make 2,500 a footprint
+figure and 1,551 a transect-coverage figure, two different quantities. **This needs Nick to confirm
+what his number counts.** Until then the page has no computed basis for either.
+
+**Not decided here.** The page was not touched. Whether to publish 2,500 on Nick's authority, wait
+for his definition, or state what the transects cover is an editorial call.
 
 ---
 
