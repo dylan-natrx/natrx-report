@@ -1,9 +1,9 @@
 # NCCF: Status
 
-**Last updated 2026-09-20, end of session 9 (the CTO review: 2,900 miles challenged, the
-concentration figure changed to 45.81%, three copy corrections, SASMI expanded).**
+**Last updated 2026-09-21, end of session 10 (2,500 miles on the CTO's word, the Beat 4 pull
+quote replaced because it was never a quote, the two-pass transition).**
 
-**The open list that matters is the one at the bottom of this file, under session 9.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
+**The open list that matters is the one at the bottom of this file, under session 10.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
 Read this first. It says where the page actually is and what is stale.
 
@@ -1313,3 +1313,115 @@ Checked 2026-09-20.
 8. **noindex comes out at launch.** One line in `route.ts`, with the condition in the comment
    above it.
 9. **Insync and `.git`.** The debris is swept, the cause is not.
+
+---
+
+## Session 10, 2026-09-21
+
+The session 9 brief arrived again alongside this one. It was checked against the repo and the
+live page before anything else: all five of its commits were on `main`, in sync with origin, and
+every change served on nccf.natrx.report. Nothing in it was redone.
+
+### 2,500 miles, on the CTO's written confirmation
+
+**Source: Nick, in writing, 2026-09-20.** The original 2,900 included ponds, the interior marsh
+water bodies. He removed them and amended the figure to 2,500 for exterior marsh only. That answers
+the question session 9 left open, which was what his number counts.
+
+**Changed in eight places on the page, not the four the brief listed:** Beat 1, Beat 3, Beat 4 four
+times including the legend's "out of 2,900", Beat 5, and the coast band caption. Also the share
+description in `route.ts`, which carried 2,900 into every link preview. Nothing else on the page
+moved; the legend's 17 miles is data-derived and stays over the new denominator. In `CLAIMS.md` the
+claim rows moved to 2,500, and the register's note that the project figure is "roughly a quarter" of
+the state's 12,000 miles became "roughly a fifth", since that ratio moved with it.
+
+**The data test did not resolve.** The brief branched on whether the layers sum to roughly 2,500,
+so the public layers are already exterior-only, or roughly 2,900, so they still carry the pond
+transects. They sum to neither: 1,550.8 miles by `rect_width`, 1,724.6 to 1,795.9 as a polyline.
+
+**Pond transects cannot be identified in the layers.** No attribute marks them and no layer is
+named for them. Geometrically, 2,072 of 3,430 transect runs close into rings, holding 39.9% of
+transects with geometry and 35.2% of `rect_width`. A ring is what a pond looks like, and also what a
+marsh island looks like, and 35 to 40% is far more than ponds alone could be at 400 of 2,900 miles.
+Telling them apart needs to know which side of the ring is water. The mirror stores transect origin
+points only, with no line and no direction, and the only land reference in the repo resolves at a
+median 1,366 feet against rings a median 131 feet across.
+
+**So it is unknown whether the page's statistics include pond shoreline, and nothing was
+recomputed.** The brief's old against new table depends on identifying the pond set. Settling it
+needs Nick to say whether the transect analysis ever ran on the ponds, or the original transect line
+geometry from ArcGIS. If the ponds were never transected, the statistics are already exterior-only
+and nothing moves.
+
+### The Beat 4 pull quote was never a quote
+
+Under Nick's name the page read: *"The methodology is public. The photographs are free. The hard
+part is running the same process 39 times without it drifting."* It came from
+`SYNTHESIS-2026-07-22.md` line 64, where it is unquoted prose summarising his framing. Somewhere on
+the way to the page it gained quotation marks, an attribution and a word he never used. "Drifting"
+is nowhere in the source and he does not recognise it.
+
+**Replaced with his words from the June 17 2026 call at [07:31]:** *"What's impressive about this
+is all the analysis was done at one meter resolution."* Checked against `transcript.md` and against
+the raw Plaud recording, which agree word for word. It sits directly after the paragraph on
+one-meter pixels, so it now reinforces the argument around it.
+
+**The paragraph after the quote has nothing in quotation marks**, so nothing in it needed holding to
+a transcript.
+
+**The rule, now in `EDITORIAL.md`: no line goes in quotation marks under a name unless it can be
+traced to a transcript.**
+
+**The rule applied to Jacob Boyd's four quotes**, against the raw recording of his 2026-08-17
+interview. All four trace, and every word on the page is one he said, in order. They are
+clean-verbatim edits, though, and two drop his hedges: Beat 7 loses "kind of" twice, and Beat 6
+loses "I think" and the object "some living shorelines and stuff", which widens what he claimed.
+Not changed. Tabulated with timestamps in `EDITORIAL.md`.
+
+**Plaud gotcha:** `transcript.md` gives the June recording ID without its `of_` prefix, and that
+form returns 404. The real ID is `of_4cbeb1e4408fc2b8d4a2977e36b931be`.
+
+### The two-pass transition
+
+"The work runs in two passes" followed the Natrx Assess paragraph, so "the work" read as the
+shoreline change analysis. The first pass was a separate, earlier change analysis. Now "The project
+ran in two passes, and the reason is that the coast is not a simple line." The rest of the
+paragraph is as it was.
+
+### Verification
+
+Beats 1 to 5 and the interactive rendered at 390 and 1440. Every changed line is visible, with no
+overflow and no clipping. Reveal order is identical to the start of the session in all five beats at
+both widths, same target counts, since every change was in place. The interactive drives through all
+three stops with no page errors. Each check ran against a server killed with `-9` and restarted.
+
+### Open
+
+Checked 2026-09-21.
+
+1. **Whether the statistics include pond shoreline.** Unknown; see above. Needs Nick or the ArcGIS
+   line geometry. One sentence depends on it: "about 93,000 fixed points along those 2,500 miles."
+2. **Jacob's quotes: does the rule allow clean verbatim?** Two drop his hedges and one also drops
+   what was built. Any change to his words should go past him, since he was promised review.
+3. **Beat 4, the paragraph after the pull quote**, uses the banned construction: "it is not the
+   modelling. It is having people who..."
+4. **Beat 4, the two-pass paragraph.** The tense now shifts ("the project ran", then "the first pass
+   is wide and quick"), and "the model looks at every pixel in a satellite image" follows a paragraph
+   about a different model, so readers will take it for that one.
+5. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
+   method.
+6. **`scaffold-page.tsx` still says 2,900, three times.** Dead code: imported by nothing, and the
+   tenant root is served by `route.ts`. It also carries the scrubbed "Vanishing Edge" title. Delete
+   it, or at least stop it tripping future greps for 2,900.
+7. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING with the
+   method note.
+8. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at
+   runtime.
+9. **The Jacob interview's -15 ft/yr.** Wrong, but the file sits outside the repo at
+   `NCCF x Natrx/files/`, so a repo-only grep reports it fixed.
+10. **Ghost forest photograph permission.** `OPEN-QUESTIONS.md` line 186. Asked of Jacob, not
+    answered.
+11. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
+    date.
+12. **noindex comes out at launch.** One line in `route.ts`.
+13. **Insync and `.git`.** Debris swept, cause unchanged.
