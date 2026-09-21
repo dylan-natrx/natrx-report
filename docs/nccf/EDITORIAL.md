@@ -441,3 +441,59 @@ with modules sized to what the analysis calls for rather than to a default."* It
 optimized design that was not in this engagement. The designs delivered here were rock baselines
 for CPRG comparison. The rest of the paragraph is untouched and still closes on the permit-ceiling
 point.
+
+---
+
+## The Beat 4 pull quote was a paraphrase, 2026-09-21
+
+**What was on the page, under Nick Brady's name:** *"The methodology is public. The photographs are
+free. The hard part is running the same process 39 times without it drifting."*
+
+**It was never a quote.** It came from `SYNTHESIS-2026-07-22.md` line 64, where it is unquoted prose
+summarising his framing: "Nick's own framing: the methodology is public, the imagery (NAIP) is free,
+and even the machine learning is not the hard part." Somewhere between that note and the page it
+gained quotation marks and an attribution, and a word he never used. "Drifting" appears nowhere in
+the source, and Nick does not recognise it. Removed.
+
+**Replaced with, verbatim:** *"What's impressive about this is all the analysis was done at one meter
+resolution."* From the NCCF update call with Nick, June 17 2026, at **[07:31]**. Checked against
+two sources that agree word for word: `transcript.md`, and the raw Plaud recording
+`of_4cbeb1e4408fc2b8d4a2977e36b931be`, segment starting 451,220 ms, Speaker 1, whom the transcript
+identifies as Nick. Attribution unchanged: Nick Brady, Chief Technology Officer, Natrx. The old quote
+carried a green accent on "39 times"; the new one carries none, since nothing in the source calls
+for emphasis.
+
+**Note for anyone going back to the recording:** the header of `transcript.md` gives the ID as
+`4cbeb1e4408fc2b8d4a2977e36b931be`, which returns 404. The real ID has an `of_` prefix.
+
+**The paragraph after the quote was checked and not changed.** It contains nothing in quotation
+marks, so there was nothing to hold to a transcript. It does carry a construction the house rules
+ban, "it is not the modelling. It is having people who...", which is left for an editorial pass
+since this task covered quoted material only.
+
+### The rule
+
+**No line goes in quotation marks under a name unless it can be traced to a transcript.** A
+synthesis, a summary, a set of notes or an earlier draft is not a source for a quote. If the words
+cannot be found in a recording or its transcript, they are paraphrase and appear without quotation
+marks, or they come out.
+
+### The rule applied to the rest of the page: Jacob Boyd's four quotes
+
+Checked the same day against the raw Plaud recording of the 2026-08-17 interview,
+`of_19aae093faaec5ae25eaceed1f38346d`. All four trace. Every word on the page is a word Jacob said,
+in the order he said it. None invents a word, which is the difference from the Nick quote above.
+All four are clean-verbatim edits, though, and two of them drop his hedges. Not changed; reported
+for a decision.
+
+| Beat | Source | Page | What was trimmed |
+|---|---|---|---|
+| 2 | [24:49] | "Whether they live on the coast or not, this is affecting everybody in North Carolina. It affects insurance rates, it affects everything." | A leading "Because I mean,". The lightest edit of the four. |
+| 2 | [05:18] | "You can see the transitioning literally happening. Some of these ghost forests are now barely even sticks, and you can see the marsh migrating through it. Just in my lifetime." | Fillers ("like, you know", "basically"), plus one grammatical change: he said "Even some of these ghost forests **that** are now...", a fragment, and the page makes it a sentence. |
+| 7 | [10:12] | "Now we have the shorelines prioritized. That's step one done for a lot of the project areas." | **Two hedges.** He said "now we **kind of** have the shorelines prioritized, so that's **kind of** step one done." |
+| 6 | [17:07] to [17:47] | "There are some sites where historically people have just built up to what the permit would say, even though it may not actually call for that." | **A hedge and an object.** He said "some sites where, you know **I think** historically people have just built **some living shorelines and stuff** up to what the permit would say." The page drops "I think", which turns an opinion into an assertion, and drops what was built, which widens the claim from living shorelines to anything. |
+
+**The open question is whether the rule allows clean verbatim.** Dropping "um" and "you know" is
+normal practice and most readers would expect it. Dropping "I think" and "kind of" changes how sure
+the speaker sounds, and the Beat 6 quote also changes what he is talking about. Jacob was promised
+sight of everything before release, so any change to his words should go past him.
