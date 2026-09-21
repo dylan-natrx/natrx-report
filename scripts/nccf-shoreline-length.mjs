@@ -20,9 +20,10 @@
  * about 1,725 miles, plus roughly 60 miles of run ends the point-to-point
  * walk cannot see.
  *
- * Neither reaches 2,500, let alone 2,900. Both of those are Nick's figures
- * for the project footprint "including internal water features", recorded in
- * CLAIMS.md, and they are not computations over these layers.
+ * Neither reaches 2,500, let alone 2,900. Both are Nick's footprint figures,
+ * not computations over these layers. 2,900 included ponds, the interior
+ * marsh water bodies; 2,500 is exterior marsh only, confirmed by him in
+ * writing on 2026-09-20 and now the figure on the page. See CLAIMS.md.
  */
 
 import { readFileSync, readdirSync } from 'node:fs'

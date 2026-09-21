@@ -44,7 +44,7 @@ const fragment = readFileSync(
 const pageTitle =
   fragment.match(/<title>(.*?)<\/title>/)?.[1] ?? 'nccf.natrx.report'
 const description =
-  'Ten years of shoreline change, measured along 2,900 miles of eastern ' +
+  'Ten years of shoreline change, measured along 2,500 miles of eastern ' +
   'North Carolina’s coast. Nearly half of the land lost came from one ' +
   'tenth of the shoreline.'
 

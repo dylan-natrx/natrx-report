@@ -87,10 +87,10 @@ For publication, still obtain a dated artifact (notebook, commit, or message) so
 | Analysis | Footprint | Resolution | Status | Notes |
 |---|---|---|---|---|
 | Change analysis (wide screen) | ~4,000 sq mi | area-based | **PENDING confirm** | Nick 07-22: "I wouldn't be surprised" it was 4,000, but "I'd have to check." The public "4,000 square mile study" figure refers to this one. |
-| Shoreline change analysis (granular) | ~800 sq mi / ~2,900 mi of shoreline | 1 meter | **CHALLENGED 2026-09-20. Nick now says 2,500 and has marked 2,900 wrong twice.** Originally his own figure: "25 desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features, 800+ sq mi." Neither figure is computable from the 39 layers, which cap at 1,550.8 mi. See "2,900 miles of shoreline, challenged 2026-09-20" below. | Nick: 25 desktop analyses, 39 subprojects, ~2,900 miles of shoreline including internal water features, 800+ sq mi. |
+| Shoreline change analysis (granular) | ~800 sq mi / **~2,500 mi of shoreline** | 1 meter | **CONFIRMED 2,500, CTO written confirmation 2026-09-20.** Nick: the original 2,900 included ponds, the interior marsh water bodies; he removed them and amended the figure to 2,500 for exterior marsh only. A footprint figure, not a computation over the 39 layers, which cap at 1,550.8 mi by `rect_width`. See "2,500 miles of shoreline, confirmed 2026-09-20" below. | Nick, 2026-09-20, in writing: 2,500 miles, exterior marsh only. Superseded: "~2,900 miles of shoreline including internal water features." |
 
-| North Carolina's total estuarine shoreline | **more than 12,000 miles** | **CONFIRMED, sourced 2026-08-28** | NC DEQ, Division of Coastal Management, Estuarine Shoreline Mapping Project: "the first ever continuous digital map of more than 12,000 miles of estuarine shoreline in North Carolina." **This is the state total. The 2,900 miles is what this project measured, roughly a quarter of it.** State both figures rather than publishing a computed percentage: the two counts come from different methods. Resolves the PENDING on the one-pager's 12,000 figure. |
-| Shoreline geometry | ~2,900 mi of shoreline inside ~800 sq mi | CONFIRMED (derived from two confirmed figures) | The measure of how convoluted this coast is, and the reason the granular pass is expensive. Publishable only in service of the two-pass logic. |
+| North Carolina's total estuarine shoreline | **more than 12,000 miles** | **CONFIRMED, sourced 2026-08-28** | NC DEQ, Division of Coastal Management, Estuarine Shoreline Mapping Project: "the first ever continuous digital map of more than 12,000 miles of estuarine shoreline in North Carolina." **This is the state total. The 2,500 miles is what this project measured, roughly a fifth of it.** (Was "2,900 ... roughly a quarter" until 2026-09-20; the ratio moved with the figure.) State both figures rather than publishing a computed percentage: the two counts come from different methods. Resolves the PENDING on the one-pager's 12,000 figure. |
+| Shoreline geometry | ~2,500 mi of shoreline inside ~800 sq mi | CONFIRMED (derived from two confirmed figures; mileage corrected 2026-09-20, the 800 sq mi was not revisited) | The measure of how convoluted this coast is, and the reason the granular pass is expensive. Publishable only in service of the two-pass logic. |
 
 **Two different analyses at two resolutions.** The public announcement used 4,000; an earlier briefing used 800. Both are true if labeled correctly. They are currently being used interchangeably, which is a factual error waiting to be caught. **Do not headline either until Nick confirms the 4,000.**
 
@@ -265,7 +265,7 @@ Every claim found live in `reference/vanishing-edge-draft2.html` that had no ent
 | The peak retreat attributed to Dare County | Beat 4 body, bar label, interactive note 4 | **RESOLVED 2026-08-28. County now sourced; copy still decoupled.** | The peak of -45.91 ft/yr is at **Navy Shell**, county unconfirmed. All three places now name the rate and not the county: "At the worst single spot measured", "The worst spot measured", "the worst spot measured anywhere on this coast". Dare as worst county overall and Hyde second are confirmed and remain on the page. Navy Shell's county is still the only open question for Nick, but **the page no longer depends on the answer.** |
 | "In 2024 the EPA awarded $421 million... the Coastal Federation's share is roughly $30 million over five years" | Beat 7 | **CLEARED 2026-08-28** | Both figures now sourced. See "The grant behind the work" above. Accurate as written. |
 | "A single project runs well into six figures..." | Beat 3 | **CUT 2026-08-28, applied** | Unsourced. No construction cost exists anywhere in this register. Dylan's call: the beat carries its weight from the physical reality of marine construction, not from a figure we would have to defend. Sentence struck rather than sourced. |
-| "North Carolina has about 2,900 miles of shoreline..." | Interactive, note 0 | **FIXED 2026-08-28** | Was a factual error: 2,900 is the measured footprint, not the state total. Now states both, the state's 12,000+ and this project's 2,900. |
+| "North Carolina has about 2,900 miles of shoreline..." | Interactive, note 0 | **FIXED 2026-08-28** | Was a factual error: 2,900 is the measured footprint, not the state total. Now states both, the state's 12,000+ and this project's 2,900. (Note 0 no longer carries a project figure; the project figure elsewhere on the page is 2,500 since 2026-09-20.) |
 | "Nothing like it had been done here before" | Beat 2, coast band figcaption | **CLEARED** | Not in this register but sanctioned by `EDITORIAL.md`: "The page can say plainly that no comparable dataset existed. Nick, who built it, cannot point to one. Stating that is reporting." Entered here so it stops being relitigated. |
 | "about 93,000" measurement spots | Beat 4, interactive note 3 | CONFIRMED | Rounds 93,004. The page carries no exact transect figure and 93,418 appears nowhere in the build. |
 | "several million dollars" for the traditional approach | Beat 5 | CONFIRMED | Correctly softens the PENDING $3.5–5M. Keep the hedge. |
@@ -297,6 +297,52 @@ A Natrx OS project page for this engagement, "NC Coastal Federation Coastal Wetl
 | Contact: Drew Keeley, Solutions Specialist | Note: that page routes to sales. This one routes to press. |
 
 The one-pager is written largely in future tense ("is mapping," "will have") under a headline that says the analysis is complete. Our page is past tense for completed work, so the two will read differently by design.
+
+---
+
+## 2,500 miles of shoreline, confirmed 2026-09-20
+
+**Source: CTO written confirmation, 2026-09-20.** Nick: the original 2,900 included ponds, the
+interior marsh water bodies. He removed them and amended the figure to 2,500 for exterior marsh
+only. The page now runs 2,500 in all eight places it ran 2,900, and in the share description in
+`route.ts`.
+
+**This answers the question the challenge below left open**, which was what Nick's figure counts.
+It counts exterior marsh shoreline inside the study footprint. It is still a footprint figure and
+still not a computation over the 39 layers.
+
+**The data test in the 2026-09-21 brief does not resolve, because neither of its cases holds.**
+The brief asked whether the layers sum to roughly 2,500, meaning the public layers are already
+exterior-only, or roughly 2,900, meaning they still carry the pond transects. They sum to neither:
+1,550.8 miles by `rect_width` and 1,724.6 to 1,795.9 miles as a geodesic polyline, which is 62 to
+72% of 2,500. The totals cannot say whether ponds are in the layers.
+
+**Pond transects cannot be identified in the layers.** Checked three ways:
+
+1. **By attribute.** The only fields are `id`, `rect_width`, `land_change_ft_per_year`,
+   `r_squared`, `epr_ft_per_year` and `nsm_ft`. No water-body or exterior flag.
+2. **By layer.** The 39 layers are named by site. None names a pond, lake or interior feature.
+3. **By geometry.** Splitting each layer into runs at gaps over 200 feet gives 3,430 runs, and
+   2,072 of them close on themselves: 37,087 transects, 39.9% of those with geometry, carrying
+   541.1 of 1,538.4 miles of `rect_width`. A closed ring is what a pond shoreline looks like, but it
+   is also what a marsh island's shoreline looks like, and 35 to 40% is far more than ponds alone
+   could account for (400 of 2,900 miles is 13.8%). Telling the two apart needs to know which side
+   of the ring is water. The mirror stores only transect origin points, with no line and so no
+   direction, and the only land reference in the repo, `coastline.json`, has a median vertex
+   spacing of 1,366 feet against a median ring about 131 feet across.
+
+**So it is not known whether the page's statistics include pond shoreline.** No figure was
+recomputed. The old against new table the brief asked for in case B was not produced, since it
+depends on identifying the pond set.
+
+**What would settle it, either of:** Nick confirming whether the transect analysis itself ran on
+the ponds, or only his mileage measure included their perimeter, since if they were never
+transected the statistics are already exterior-only and nothing moves; or the original transect
+line geometry from the ArcGIS source, whose direction would classify every ring.
+
+**One sentence to watch.** Beat 4 now reads "Natrx set about 93,000 fixed points along those 2,500
+miles." If any of those points sit on ponds, that sentence puts pond transects on exterior-only
+shoreline. Unchanged pending the above.
 
 ---
 
