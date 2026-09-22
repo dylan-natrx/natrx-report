@@ -87,7 +87,7 @@ For publication, still obtain a dated artifact (notebook, commit, or message) so
 | Analysis | Footprint | Resolution | Status | Notes |
 |---|---|---|---|---|
 | Change analysis (wide screen) | ~4,000 sq mi | area-based | **PENDING confirm** | Nick 07-22: "I wouldn't be surprised" it was 4,000, but "I'd have to check." The public "4,000 square mile study" figure refers to this one. |
-| Shoreline change analysis (granular) | ~800 sq mi / **~2,500 mi of shoreline** | 1 meter | **CONFIRMED 2,500, CTO written confirmation 2026-09-20.** Nick: the original 2,900 included ponds, the interior marsh water bodies; he removed them and amended the figure to 2,500 for exterior marsh only. A footprint figure, not a computation over the 39 layers, which cap at 1,550.8 mi by `rect_width`. See "2,500 miles of shoreline, confirmed 2026-09-20" below. | Nick, 2026-09-20, in writing: 2,500 miles, exterior marsh only. Superseded: "~2,900 miles of shoreline including internal water features." |
+| Shoreline change analysis (granular) | ~800 sq mi / **~2,500 mi of shoreline** | 1 meter | **CONFIRMED 2,500, CTO written confirmation 2026-09-20. Closed 2026-09-22.** Exterior marsh only, ponds removed: the original 2,900 included ponds, the interior marsh water bodies, and Nick removed them. This is shoreline length. The published transect widths sum to about 1,550 mi, which measures transect footprint, so the two numbers are not expected to match. Page statistics describe the published dataset of 93,418 points. See "2,500 miles of shoreline, confirmed 2026-09-20" below. | Nick, 2026-09-20, in writing: 2,500 miles, exterior marsh only. Superseded: "~2,900 miles of shoreline including internal water features." |
 
 | North Carolina's total estuarine shoreline | **more than 12,000 miles** | **CONFIRMED, sourced 2026-08-28** | NC DEQ, Division of Coastal Management, Estuarine Shoreline Mapping Project: "the first ever continuous digital map of more than 12,000 miles of estuarine shoreline in North Carolina." **This is the state total. The 2,500 miles is what this project measured, roughly a fifth of it.** (Was "2,900 ... roughly a quarter" until 2026-09-20; the ratio moved with the figure.) State both figures rather than publishing a computed percentage: the two counts come from different methods. Resolves the PENDING on the one-pager's 12,000 figure. |
 | Shoreline geometry | ~2,500 mi of shoreline inside ~800 sq mi | CONFIRMED (derived from two confirmed figures; mileage corrected 2026-09-20, the 800 sq mi was not revisited) | The measure of how convoluted this coast is, and the reason the granular pass is expensive. Publishable only in service of the two-pass logic. |
@@ -301,6 +301,24 @@ The one-pager is written largely in future tense ("is mapping," "will have") und
 ---
 
 ## 2,500 miles of shoreline, confirmed 2026-09-20
+
+**Closed 2026-09-22, and this block governs the rest of the section.**
+
+- **2,500 miles.** CTO written confirmation, 2026-09-20. Exterior marsh only, ponds removed. This is
+  shoreline length.
+- **About 1,550 miles.** The sum of `rect_width` across the published transects. This measures
+  transect footprint: the width each transect's rectangle covers. The rectangles do not tile the
+  shore continuously (median width 95.1 feet against a median spacing of 109.3 feet between
+  neighbouring transects), so the footprint runs short of the shoreline it samples.
+- **The two numbers are not expected to match.** They measure different things, and the gap between
+  them is not evidence of an error in either.
+- **Page statistics describe the published dataset of 93,418 points.** Every figure on the page is
+  computed over those points as published. The CTO will not be consulted again on whether pond
+  transects are among them, so that question is closed by decision rather than answered. The
+  analysis below of why it cannot be answered from the data stands as the record of that.
+
+Where the section below calls 2,500 "a footprint figure", read shoreline length; the term
+"footprint" now belongs to the transect sum.
 
 **Source: CTO written confirmation, 2026-09-20.** Nick: the original 2,900 included ponds, the
 interior marsh water bodies. He removed them and amended the figure to 2,500 for exterior marsh

@@ -545,3 +545,46 @@ these areas". Ending a quote early is a boundary choice, and here the scope is a
 
 **The Beat 7 quote was not touched.** It still drops "kind of" twice from what he said at [10:12].
 Under this rule it should get the same treatment; left for a separate decision.
+
+---
+
+## Quotation rule, amended 2026-09-22: verbal tics need the speaker's approval
+
+**The rule now has three tiers.**
+
+1. **Filler sounds and false starts** ("um", "uh", "and stuff", a sentence abandoned and restarted)
+   may be removed freely.
+2. **Verbal tics** ("kind of", "you know", and others of the same kind such as "I mean") may be
+   removed only where the speaker approves the tidied version.
+3. **Hedges and qualifiers** ("I think", and any word that limits what is being claimed) may not be
+   removed, because removing them changes the strength of the claim.
+
+**This supersedes one line of the earlier 2026-09-22 section above,** which listed "you know" as
+filler that can go. It now needs approval.
+
+### Beat 7, for Jacob's review packet
+
+Recording `of_19aae093faaec5ae25eaceed1f38346d`, the 2026-08-17 interview, segment at **[10:12]**
+(612,630 ms).
+
+| Verbatim, from the recording | Tidied, as on the page |
+|---|---|
+| "So now we **kind of** have the shorelines, **um**, prioritized, **so** that's **kind of** step one done for a lot of the project areas." | "Now we have the shorelines prioritized. That's step one done for a lot of the project areas." |
+
+Removed: the leading "So"; "kind of" twice, which is the tic that needs his approval; "um"; and the
+joining "so", which also splits one sentence into two. The recording transcribes the middle as
+"the shorelinesum, Prioritized", run together; that is "shorelines, um, prioritized".
+
+### Three more quotes that fall under the amended rule
+
+The Beat 7 quote is the one named for approval. Applied as written, the rule also reaches these three,
+so they belong in the same packet. None has been changed on the page.
+
+| Beat | Recording | Verbatim | Tidied, as on the page | Needs approval for |
+|---|---|---|---|---|
+| 6 | [17:07] to [17:47] | "There are some sites where, **you know** I think historically people have just built some living shorelines and stuff up to what the permit would say, even though **you know**, it may not actually call for that" | "There are some sites where I think historically people have just built some living shorelines up to what the permit would say, even though it may not actually call for that." | "you know", twice. Tidied on 2026-09-22 under the earlier rule, which allowed it. |
+| 2 | [24:49] | "whether they live on the coast or not, this is affecting everybody in North Carolina. Because **I mean**, it affects insurance rates, it affects everything." | "Whether they live on the coast or not, this is affecting everybody in North Carolina. It affects insurance rates, it affects everything." | "I mean", with the leading "Because". |
+| 2 | [05:18] | "you can see the transitioning literally happening. Even some of these ghost forests that are now **like, you know**, barely even sticks, and you can see the marsh **basically** migrating through it. **You know**, just in my lifetime" | "You can see the transitioning literally happening. Some of these ghost forests are now barely even sticks, and you can see the marsh migrating through it. Just in my lifetime." | "like, you know", "basically", "You know". Also one change beyond tics: "Even some of these ghost forests **that** are now" is a fragment, and the page drops "Even" and "that" to make it a sentence. |
+
+Every word on the page in all four quotes is Jacob's, in his order. What he is being asked to
+approve is the removals.
