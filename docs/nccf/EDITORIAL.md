@@ -497,3 +497,51 @@ for a decision.
 normal practice and most readers would expect it. Dropping "I think" and "kind of" changes how sure
 the speaker sounds, and the Beat 6 quote also changes what he is talking about. Jacob was promised
 sight of everything before release, so any change to his words should go past him.
+
+---
+
+## Clean verbatim, settled 2026-09-22
+
+**The rule.** In a quotation, filler and false starts may be removed. Hedges and qualifiers may
+not, because removing them changes the strength of the claim. "Um", "uh", "you know" and "and stuff"
+can go. "I think", "kind of", and any word that limits what is being claimed stay.
+
+This extends the 2026-09-21 rule. A quote must trace to a transcript, and it must also claim no
+more than the speaker did.
+
+**Applied to the Beat 6 quote, Jacob Boyd.**
+
+Before:
+
+> There are some sites where historically people have just built up to what the permit would say,
+> even though it may not actually call for that.
+
+After:
+
+> There are some sites where I think historically people have just built some living shorelines
+> up to what the permit would say, even though it may not actually call for that.
+
+Source: the raw Plaud recording of the 2026-08-17 interview, `of_19aae093faaec5ae25eaceed1f38346d`.
+The sentence runs across two segments, which break mid-sentence:
+
+- **[17:07]**, 1,027,829 ms: "...because there are some sites where, you know I think historically
+  people have just built."
+- **[17:47]**, 1,067,150 ms: "Some living shorelines and stuff up to what the permit would say,
+  even though you know, it may not actually call for that in some of these areas..."
+
+Every word on the page is his, in his order. The only words removed from inside the quote are "you
+know" twice and "and stuff". "I think" is restored, which keeps it his opinion. "Some living
+shorelines" is restored, which keeps it about living shorelines rather than about any shoreline
+work.
+
+**The notes file is not a safe source for this line.** `INTERVIEW-JACOB-2026-08-17.md` line 61
+already reads "some sites where historically people have just built". It kept "living shorelines
+and stuff" but had already dropped "I think". The hedge survives only in the recording. For
+quotes, go to the recording.
+
+**One boundary left as it was.** The quote ends at "call for that", before his trailing "in some of
+these areas". Ending a quote early is a boundary choice, and here the scope is already carried by
+"some sites", so the claim is not widened. Extending it to include the phrase would also be faithful.
+
+**The Beat 7 quote was not touched.** It still drops "kind of" twice from what he said at [10:12].
+Under this rule it should get the same treatment; left for a separate decision.
