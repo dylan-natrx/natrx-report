@@ -2,7 +2,7 @@
 
 **Last updated 2026-09-22, end of session 11 (the Nick negation, the two-pass paragraph, Jacob's
 hedges restored, the dead scaffold and components deleted, the first pass's imagery unnamed, the
-2,500 and quote-tidying decisions closed, source files annotated, Jacob's review packet).**
+2,500 and quote-tidying decisions closed, source files annotated, Jacob's review packet, the Natrx Assess entry rewritten).**
 
 **The open list that matters is the one at the bottom of this file, under session 11.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
@@ -1623,32 +1623,44 @@ the recording and the page equal the removed list.
 **Verified.** The glossary opened at 390 and 1440: the Natrx Assess entry renders inside the drawer
 with no clipping and no page errors. Its wording is unchanged, per the above.
 
+### Last of the day
+
+**The Natrx Assess glossary entry is rewritten in full.** The term label keeps its existing markup;
+the definition now reads: *"The analysis system Natrx built for this kind of work. A model reads
+one-meter aerial photographs and marks where marsh ends and water begins. Established shoreline
+change methods turn those lines into rates of retreat, and a person checks the model wherever the
+imagery is ambiguous."* It matches the Beat 4 correction: the model classifies, established methods
+produce the rates, a person checks. The overstatement is gone, and nothing is said twice. Rendered at
+390 and 1440, inside the drawer with no clipping and no page errors, served by a restarted dev
+server.
+
+**`SYNTHESIS-2026-07-22.md` line 47 is annotated**, with the same correction note used on line 61:
+2,500 miles, exterior marsh only, CTO written confirmation 2026-09-20. Line 47 is a paragraph rather
+than a list item, so the note is not indented. Diffed against a copy saved before editing: one line
+added, none removed. Both "~2,900" mentions in the file now carry the note. Inserting the note moved
+the later lines down by one, so the line that was 61 is now 62. Outside the repo, so this entry is
+its record.
+
 ### Open
 
-Checked 2026-09-22, at the end of the day.
+Checked 2026-09-22, last of the day.
 
-1. **The Natrx Assess glossary entry still overstates the model.** "The models are trained on
-   established coastal science rather than on imagery alone." The supplied fix duplicates the rest
-   of the entry, so the entry wants rewriting as a whole, or the last sentence cut down to the two
-   parts that are new: rates from established shoreline change methods, and a person checking the
-   model where the imagery is ambiguous.
-2. **Send Jacob's review packet.** `docs/nccf/handoff/JACOB-REVIEW.md` is ready. If he declines a
+
+1. **Send Jacob's review packet.** `docs/nccf/handoff/JACOB-REVIEW.md` is ready. If he declines a
    tidied quote, the page takes his verbatim words. The packet also asks him to confirm the
    Federation line in Beat 4 and the Beat 7 release timing, "this fall".
-3. **`SYNTHESIS-2026-07-22.md` line 47 still says ~2,900 miles, unannotated.** "The granular shoreline
-   change analysis was ~800 square miles, or ~2,900 miles of shoreline, at one meter." The brief
-   named line 61 only.
-4. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
-   method.
-5. **The Beat 6 quote ends before "in some of these areas".** A boundary choice; the scope is already
-   carried by "some sites".
-6. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING.
-7. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at runtime.
-8. **Ghost forest photograph permission.** Asked of Jacob, not answered.
-9. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
-   date.
-10. **noindex comes out at launch.** One line in `route.ts`.
-11. **Insync and `.git`.** Debris swept, cause unchanged.
 
-**Closed since the last list:** the Jacob interview's -15 ft/yr, now annotated in the source file.
-The review packet moved from assembling to sending.
+2. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
+   method.
+3. **The Beat 6 quote ends before "in some of these areas".** A boundary choice; the scope is already
+   carried by "some sites".
+4. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING.
+5. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at runtime.
+6. **Ghost forest photograph permission.** Asked of Jacob, not answered.
+7. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
+   date.
+8. **noindex comes out at launch.** One line in `route.ts`.
+9. **Insync and `.git`.** Debris swept, cause unchanged.
+
+**Closed since the last list:** the Natrx Assess glossary entry, rewritten; `SYNTHESIS-2026-07-22.md`
+line 47, annotated. Earlier today: the Jacob interview's -15 ft/yr, annotated in the source file.
