@@ -1,7 +1,8 @@
 # NCCF: Status
 
 **Last updated 2026-09-22, end of session 11 (the Nick negation, the two-pass paragraph, Jacob's
-hedges restored, the dead scaffold deleted).**
+hedges restored, the dead scaffold and components deleted, the first pass's imagery unnamed, the
+2,500 and quote-tidying decisions closed).**
 
 **The open list that matters is the one at the bottom of this file, under session 11.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
@@ -1526,36 +1527,90 @@ Beats 4 and 6 rendered at 390 and 1440. Every changed line is visible with no ov
 clipping, and there are no page errors. Reveal order in both beats is identical to the start of the
 session, with the same target counts.
 
+### Later the same day
+
+**Decision context, from the brief:** the CTO will not be consulted again. Where sources conflict, the
+page uses the most neutral wording that stays accurate, and no new factual claim is introduced to
+settle an ambiguity.
+
+**The first pass's imagery is no longer named.** The interactive's step button "Satellite" is now
+"Wide pass", and the label "Pass 1 · Satellite imagery" is now "Pass 1 · Wide pass". Note 1 lost
+only the word: "Satellite pictures of the same marsh in two different years show where it turned
+into open water, only" became "Pictures of the same marsh in two different years show where it
+turned into open water, only." The glossary's Natrx Assess entry now "reads aerial photographs",
+since the detailed pass is sourced to NAIP. The whole fragment was searched. Three satellite
+mentions remain and are deliberate: Beat 1's "aerial and satellite imagery", which describes the
+project as a whole, and two comparisons, the resolution paragraph's "publicly available satellite
+imagery" and the glossary's "Freely available satellite imagery is not."
+
+**The paragraph after the two-pass paragraph is in past tense.** "The second is narrow and exact"
+became "was", and "the models trace" became "traced". "Measure the same line five times across a
+decade and the shoreline's movement at that spot becomes a rate" stays present: it states how an
+erosion rate is derived in general, and it is an imperative. The two paragraphs now narrate in one
+tense.
+
+**"I think" no longer splits in the Beat 6 quote.** A non-breaking space joins them. Measured at
+1440, 1080, 768, 390 and 360: the two words share a line at every width.
+
+**The dead components folder is deleted.** `src/app/projects/nccf/components/` lost its only
+importer with the scaffold. Six files removed: BeatRail.tsx, Glossary.tsx, GlossaryTrigger.tsx,
+Masthead.tsx, RevealObserver.tsx, Texture.tsx. Nothing imported any of them. tsc is clean, and the
+root and `/login` still serve. The nccf project is now `data`, `layout.tsx`, `login`, `route.ts`
+and `styles`.
+
+**2,500 closed in `CLAIMS.md`.** Exterior marsh only, ponds removed, CTO written confirmation
+2026-09-20, and this is shoreline length. The published transect widths sum to about 1,550 miles,
+which measures transect footprint, so the two numbers are not expected to match. Page statistics
+describe the published dataset of 93,418 points. The pond question closes by decision. The register
+had called 2,500 "a footprint figure"; that word now belongs to the transect sum, and the section
+says so.
+
+**The quotation rule now has three tiers**, in `EDITORIAL.md`. Filler sounds and false starts may go
+freely. Verbal tics such as "kind of" and "you know" may go only where the speaker approves the
+tidied version. Hedges and qualifiers may not go. This moves "you know" out of the free tier, where
+the rule of earlier the same day had put it.
+
+**Jacob's review packet has four quotes, not one.** Beat 7 is the one named: verbatim at [10:12],
+"So now we kind of have the shorelines, um, prioritized, so that's kind of step one done for a lot
+of the project areas", against the page's "Now we have the shorelines prioritized. That's step one
+done for a lot of the project areas." Applied as written, the amended rule also reaches Beat 6,
+which dropped "you know" twice under the earlier rule; Beat 2's insurance quote, which drops "I
+mean"; and Beat 2's ghost forest quote, which drops "like, you know", "basically" and "You know", and
+also drops "Even" and "that" to make his fragment a sentence. All four are set out verbatim beside
+the tidied versions in `EDITORIAL.md`. None was changed on the page.
+
+**Verified.** Beats 1, 4 and 6 at 390 and 1440, every changed line visible with no overflow or
+clipping. The interactive driven through all three stops, with "Wide pass" on one line on the step
+button and the new label and note showing at stop 1. The glossary opened, with the Assess entry
+reading "aerial photographs". Reveal order in Beats 1, 4 and 6 is identical to the start of this
+session. No page errors.
+
 ### Open
 
-Checked 2026-09-22.
+Checked 2026-09-22, later the same day.
 
-1. **What imagery the first pass used.** Unresolved; the paragraph now says "image". Five places
-   still say or imply satellite: Beat 1's "ten years of aerial and satellite imagery", the
-   interactive's "Satellite" step button, its label "Pass 1 · Satellite imagery", its note 1
-   "Satellite pictures of the same marsh in two different years", which describes the very
-   differencing the paragraph now leaves unnamed, and the glossary line that Natrx Assess "reads
-   satellite and aerial imagery". Nick is the one to ask.
-2. **The paragraph after the two-pass paragraph mixes tenses**, and now opens in present right after
-   a past-tense paragraph: "The second is narrow and exact", "Natrx set", "the models trace". Under
-   the same rule, "is" and "trace" would go to past.
-3. **The Beat 7 quote drops "kind of" twice** from what Jacob said at [10:12]. Under the new rule it
-   should be restored.
-4. **The Beat 6 quote ends before "in some of these areas".** A boundary choice; the scope is
-   already carried by "some sites". Extending it would also be faithful.
-5. **`src/app/projects/nccf/components/` has no importer.** The scaffold was the only thing using
-   Texture, Masthead, BeatRail, Glossary and RevealObserver, and GlossaryTrigger is unused with
-   them. Six dead files.
-6. **Whether the statistics include pond shoreline.** Unknown. Needs Nick or the ArcGIS line
-   geometry. "About 93,000 fixed points along those 2,500 miles" depends on it.
-7. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
+1. **Jacob's review packet.** Four quotes need his approval for tidied tics, all set out verbatim in
+   `EDITORIAL.md`: Beat 7 ("kind of" twice), Beat 6 ("you know" twice), and two in Beat 2 ("I mean";
+   "like, you know", "basically", "You know", plus the dropped "Even" and "that"). If he declines any,
+   the page takes his verbatim words.
+2. **The glossary's Natrx Assess entry may overstate the model.** It says "The models are trained on
+   established coastal science rather than on imagery alone." After the CTO's correction that the
+   model classifies land from water and the rates come from established shoreline change methods,
+   that sentence claims more about the model than the sources do.
+3. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
    method.
-8. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING.
-9. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at
-   runtime.
-10. **The Jacob interview's -15 ft/yr.** Wrong, in a file outside the repo.
-11. **Ghost forest photograph permission.** Asked of Jacob, not answered.
-12. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
-    date.
-13. **noindex comes out at launch.** One line in `route.ts`.
-14. **Insync and `.git`.** Debris swept, cause unchanged.
+4. **The Beat 6 quote ends before "in some of these areas".** A boundary choice; the scope is already
+   carried by "some sites".
+5. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING.
+6. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at runtime.
+7. **The Jacob interview's -15 ft/yr.** Wrong, in a file outside the repo.
+8. **Ghost forest photograph permission.** Asked of Jacob, not answered.
+9. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
+   date.
+10. **noindex comes out at launch.** One line in `route.ts`.
+11. **Insync and `.git`.** Debris swept, cause unchanged.
+
+**Closed since this morning's list:** the first pass's imagery, now unnamed; the tense in the
+paragraph after the two-pass paragraph; the components folder, deleted; and whether the statistics
+include pond shoreline, closed by decision in `CLAIMS.md`. The Beat 7 quote moves into the review
+packet.
