@@ -1,11 +1,35 @@
 # NCCF: Status
 
-**Last updated 2026-09-21, end of session 10 (2,500 miles on the CTO's word, the Beat 4 pull
-quote replaced because it was never a quote, the two-pass transition).**
+**Last updated 2026-09-22, end of session 11 (the Nick negation, the two-pass paragraph, Jacob's
+hedges restored, the dead scaffold deleted).**
 
-**The open list that matters is the one at the bottom of this file, under session 10.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
+**The open list that matters is the one at the bottom of this file, under session 11.** Earlier sections carry their own open lists, frozen as they stood on the day they were written. Several of them still name work that is now finished, which is how a recent session opened by re-reporting a job already done. Read them as history, not as a worklist.
 
 Read this first. It says where the page actually is and what is stale.
+
+---
+
+## Tooling gotchas
+
+Standing notes, kept current. Each one cost a session something.
+
+- **Plaud recording IDs need the `of_` prefix.** `transcript.md` gives the June 17 recording as
+  `4cbeb1e4408fc2b8d4a2977e36b931be`, and that form returns 404. The working ID is
+  `of_4cbeb1e4408fc2b8d4a2977e36b931be`. Same for every recording: the Jacob interview is
+  `of_19aae093faaec5ae25eaceed1f38346d`, the July 22 Nick interview
+  `of_c990839fa1dd8218bfeebaabf0f7c524`. A 404 on a Plaud ID means a missing prefix before it
+  means a missing recording. `list_files` with a date window returns the real IDs.
+- **For quotes, go to the recording, not the notes.** `INTERVIEW-JACOB-2026-08-17.md` and
+  `SYNTHESIS-2026-07-22.md` are summaries. The first had already dropped a hedge from a quote the
+  page used; the second is where a paraphrase was promoted into a fake Nick quote.
+- **The route reads the fragment once at module load.** After any fragment edit, restart the dev
+  server. A plain `pkill` has failed to take at least once and served a stale page; use
+  `pkill -9 -f "next dev"`, confirm no `next` process remains, then start it again.
+- **The Playwright browser path is per machine.** On darwin it is the npx-cached Playwright with
+  `chromium_headless_shell` under `~/Library/Caches/ms-playwright`. Never hardcode a browser path in
+  a brief. See session 8.
+- **Insync holds git's lock files.** If `index.lock` or `HEAD.lock` cannot be created, move it aside
+  and retry, then delete the stale file.
 
 ---
 
@@ -1425,3 +1449,108 @@ Checked 2026-09-21.
     date.
 12. **noindex comes out at launch.** One line in `route.ts`.
 13. **Insync and `.git`.** Debris swept, cause unchanged.
+
+---
+
+## Session 11, 2026-09-22
+
+### The Nick paragraph, Beat 4
+
+"which part of this was hard, and it is not the modelling. It is having people who" became "which
+part of this was hard: having people who". It now reads as one sentence: *"Nick Brady, Natrx's chief
+technology officer, is matter of fact about which part of this was hard: having people who can look
+at an ambiguous photograph of a tidal flat and say whether they are looking at marsh or water."*
+
+### The two-pass paragraph, Beat 4
+
+Before: *"The project ran in two passes, and the reason is that the coast is not a simple line. It's
+a maze of creeks, bays and marsh islands. Measuring all of that precisely is slow and expensive, so
+the first pass is wide and quick, and the second is run only where more precision warrants the
+additional cost. The model looks at every pixel in a satellite image and decides one thing about it:
+marsh, or not marsh. Do that for one year, do it again for a later one, subtract one from the other,
+and what is left is everywhere the marsh went away. It covers everything fast. It does not tell you
+how fast any one place is moving."*
+
+After: *"The project ran in two passes, and the reason is that the coast is not a simple line. It's
+a maze of creeks, bays and marsh islands. Measuring all of that precisely is slow and expensive, so
+the first pass was wide and quick, and the second was run only where more precision warranted the
+additional cost. The first pass looked at every pixel in an image and decided one thing about it:
+marsh, or not marsh. Do that for one year, do it again for a later one, subtract one from the other,
+and what is left is everywhere the marsh went away. It covered everything fast. It did not tell you
+how fast any one place is moving."*
+
+**Tense.** What the project did is past; facts about the coast stay present, including "how fast
+any one place is moving", since the coast still is. The imperative "Do that for one year..." was
+left alone: it has no past tense without adding a subject, which would be rewording, and it
+explains the technique rather than narrating what was done.
+
+**"The model" became "The first pass"**, so it is not taken for the Natrx Assess classifier in the
+paragraph before.
+
+**"Satellite image" became "image", because the sources do not settle what the first pass used.**
+The SOW names no imagery for the Phase II change analysis; Sentinel and Landsat appear only for the
+Phase III carbon model and NAIP only for the erosion pass. The June 17 call names the years, 2016
+and 2022, and both are NAIP years, but it names no dataset. SYNTHESIS line 47, "two different
+analyses at two resolutions", leans satellite, but it paraphrases the July 22 interview, and the raw
+recording names no dataset either. Nick does call the top-down approach "using satellite remote
+sensing data" at [05:44], but at [15:51] he says "satellites collecting data" while explaining the
+one-meter NAIP pass, which is aerial, so the word from him cannot confirm it.
+
+### Jacob's hedges restored, Beat 6
+
+Before: *"There are some sites where historically people have just built up to what the permit would
+say, even though it may not actually call for that."*
+
+After: *"There are some sites where I think historically people have just built some living
+shorelines up to what the permit would say, even though it may not actually call for that."*
+
+From the raw recording `of_19aae093faaec5ae25eaceed1f38346d`, [17:07] and [17:47]. Every word is
+his, in his order; only "you know" twice and "and stuff" were removed from inside the quote. The
+notes file had already dropped "I think", so the hedge came from the recording. The rule is in
+`EDITORIAL.md`: filler and false starts may be removed; hedges and qualifiers may not. The Beat 7
+quote was not touched.
+
+### The dead scaffold, deleted
+
+`src/app/projects/nccf/scaffold-page.tsx` is gone, with its three 2,900s. Nothing imported it or its
+export `NccfPage`, and it could not be a route. tsc is clean and no 2,900 remains in `src`.
+
+### Verification
+
+Beats 4 and 6 rendered at 390 and 1440. Every changed line is visible with no overflow and no
+clipping, and there are no page errors. Reveal order in both beats is identical to the start of the
+session, with the same target counts.
+
+### Open
+
+Checked 2026-09-22.
+
+1. **What imagery the first pass used.** Unresolved; the paragraph now says "image". Five places
+   still say or imply satellite: Beat 1's "ten years of aerial and satellite imagery", the
+   interactive's "Satellite" step button, its label "Pass 1 · Satellite imagery", its note 1
+   "Satellite pictures of the same marsh in two different years", which describes the very
+   differencing the paragraph now leaves unnamed, and the glossary line that Natrx Assess "reads
+   satellite and aerial imagery". Nick is the one to ask.
+2. **The paragraph after the two-pass paragraph mixes tenses**, and now opens in present right after
+   a past-tense paragraph: "The second is narrow and exact", "Natrx set", "the models trace". Under
+   the same rule, "is" and "trace" would go to past.
+3. **The Beat 7 quote drops "kind of" twice** from what Jacob said at [10:12]. Under the new rule it
+   should be restored.
+4. **The Beat 6 quote ends before "in some of these areas".** A boundary choice; the scope is
+   already carried by "some sites". Extending it would also be faithful.
+5. **`src/app/projects/nccf/components/` has no importer.** The scaffold was the only thing using
+   Texture, Masthead, BeatRail, Glossary and RevealObserver, and GlossaryTrigger is unused with
+   them. Six dead files.
+6. **Whether the statistics include pond shoreline.** Unknown. Needs Nick or the ArcGIS line
+   geometry. "About 93,000 fixed points along those 2,500 miles" depends on it.
+7. **Beat 5's lead-in contradicts 45.81.** "The worst tenth of them" describes the replaced count
+   method.
+8. **The zone count is a property of our rendering.** `CLAIMS.md` carries it as PENDING.
+9. **`nccf-figdata.json` holds the superseded decile curve.** Outside the repo, not read at
+   runtime.
+10. **The Jacob interview's -15 ft/yr.** Wrong, in a file outside the repo.
+11. **Ghost forest photograph permission.** Asked of Jacob, not answered.
+12. **Carried forward, unverifiable from the repo:** Nick's bundle, the Montefiore gate, the launch
+    date.
+13. **noindex comes out at launch.** One line in `route.ts`.
+14. **Insync and `.git`.** Debris swept, cause unchanged.
