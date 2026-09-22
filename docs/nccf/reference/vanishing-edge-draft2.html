@@ -804,7 +804,7 @@ footer{margin-bottom:0}
     </svg>
       <nav class="labstep" id="labStep" aria-label="Choose a view">
         <button type="button" data-step="0" aria-current="true"><span class="sn mono">01</span><span class="st">Before</span></button>
-        <button type="button" data-step="1" aria-current="false"><span class="sn mono">02</span><span class="st">Satellite</span></button>
+        <button type="button" data-step="1" aria-current="false"><span class="sn mono">02</span><span class="st">Wide pass</span></button>
         <button type="button" data-step="2" aria-current="false"><span class="sn mono">03</span><span class="st">Aerial</span></button>
       </nav>
       <div class="labkey" id="labKey" aria-hidden="true">
@@ -1021,7 +1021,7 @@ footer{margin-bottom:0}
     <div class="gpane on" id="gp-terms" role="tabpanel" aria-labelledby="gt-terms">
       <p class="gintro">Plain-language definitions for the terms that travel through this piece.</p>
       <dl>
-        <dt id="g-natrx-assess"><em style="color:inherit">Natrx Assess</em></dt><dd>The analysis system Natrx built for this kind of work. It reads satellite and aerial imagery to find where marsh is turning into water, then measures how fast a shoreline is moving, at one meter. The models are trained on established coastal science rather than on imagery alone.</dd>
+        <dt id="g-natrx-assess"><em style="color:inherit">Natrx Assess</em></dt><dd>The analysis system Natrx built for this kind of work. It reads aerial photographs to find where marsh is turning into water, then measures how fast a shoreline is moving, at one meter. The models are trained on established coastal science rather than on imagery alone.</dd>
         <dt>Marsh</dt><dd>Low, salty grassland at the edge of the bays and rivers. It floods and drains with the tide and it holds the shoreline together.</dd>
         <dt>Ghost forest</dt><dd>A stand of dead trees killed by salt water pushing inland, with marsh moving in around them.</dd>
         <dt>Living shoreline</dt><dd>Engineered structure and natural habitat built together just offshore, so wave energy is absorbed before it reaches the marsh and the protection strengthens as oysters and grass establish.</dd>
@@ -1140,10 +1140,10 @@ secs.forEach(s=>spy.observe(s));
   const lab=$('lab'),stage=$('labStage'),body=$('labNoteBody'),kick=$('labStepName'),sweep=$('ncSweepR');
   if(!lab) return;
   const btns=[...lab.querySelectorAll('.labstep button[data-step]')];
-  const NAMES=['Before','Pass 1 \u00b7 Satellite imagery','Pass 2 \u00b7 Aerial photography'];
+  const NAMES=['Before','Pass 1 \u00b7 Wide pass','Pass 2 \u00b7 Aerial photography'];
   const NOTES=[
    'The coastline, before analysis. More than 12,000 miles of it, much of which cannot be reached on foot.',
-   'Satellite pictures of the same marsh in two different years show where it turned into open water, only. It doesn\u2019t say how fast the shore is moving, only where a closer look is worthwhile.',
+   'Pictures of the same marsh in two different years show where it turned into open water, only. It doesn\u2019t say how fast the shore is moving, only where a closer look is worthwhile.',
    'Aerial photographs from between 2012 and 2022 analyzed at one meter resolution produced about 93,000 measured points along the same coast, roughly one every hundred feet. A lot of it is barely moving. The orange is where the shore is retreating fastest.'];
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const svg=$('ncSvg'), FULL=[152,20,848,533], MID=[382.0,120.0,566.0,356.0];
