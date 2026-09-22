@@ -30,6 +30,11 @@ Standing notes, kept current. Each one cost a session something.
   a brief. See session 8.
 - **Insync holds git's lock files.** If `index.lock` or `HEAD.lock` cannot be created, move it aside
   and retry, then delete the stale file.
+- **The Vercel API token in the CLI's `auth.json` expires.** Reading it directly to query deployments
+  can return `{"invalidToken":true}`, and a naive poll then reports a SHA mismatch that is really an
+  auth failure. Run any `vercel` CLI command first, such as `vercel whoami`, which refreshes the
+  file, then read the token. `vercel inspect` does not print the commit SHA; the API does, at
+  `meta.githubCommitSha`.
 
 ---
 
