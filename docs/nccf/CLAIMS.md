@@ -27,7 +27,7 @@ Numbers that cannot be sourced do not get published, however good they sound.
 | Transects retreating faster than 2 ft/yr | 23.5% | CONFIRMED | |
 | Transects retreating faster than 5 ft/yr | 8.3% | CONFIRMED | |
 | 5th-percentile transect | -6.77 ft/yr | CONFIRMED | |
-| **The worst tenth of the eroding shoreline accounts for 45.81% of all land lost** | **45.81%** | **CONFIRMED and published 2026-09-20, replacing 43.44%.** Method of record below. Regenerate with `node scripts/nccf-concentration.mjs`. | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. |
+| **The worst tenth of the eroding shoreline accounts for 45.81% of all land lost** | **45.81%** | **CONFIRMED and published 2026-09-20, replacing 43.44%.** Method of record below. Regenerate with `node scripts/nccf-concentration.mjs`. | **Publish 43.44.** Matches `nccf-figdata.json`, which is the computation of record. 43.5 is the rounded internal figure and 43 was a display rounding in draft 2; both are superseded for publication. | Notes: the strongest number in the dataset and the one Nick endorses for the headline. Computed from the individual shoreline-change transect points, all ~76k eroding points equally weighted. **Not from the hexagon layer.** Robustness: filtering to points with regression r² ≥ 0.5, the top decile still accounts for ~39%. It holds. **Published wording, 2026-10-12: both places this claim appears on the page now qualify it to the study area. See "The 2026-10-08 round" at the end of this file.** |
 | Study period | 2012–2022 | CONFIRMED | |
 | Resolution | 1 meter | CONFIRMED | |
 | Temporal data points | 5 (2012, 2014, 2016, 2019, 2022) | CONFIRMED | Nick 07-22. Intended lower bound ~2010, in practice 2012. |
@@ -570,3 +570,33 @@ year. About 17 miles of shore.*
 **Not a leaderboard.** The map bands by threshold and names no places, which keeps it inside
 Nick's 07-22 instruction not to build a ranked top-ten list.
 
+
+---
+
+## The 2026-10-08 round
+
+The Federation's review, applied 2026-10-12. Two wording qualifiers, two new claims.
+
+### The "in the study area" qualifier
+
+The concentration finding appears twice on the page, and both places now say what it is a
+finding about. Neither number moved. The qualifier is wording, not a restatement, and it
+closes the gap between a figure computed over the measured 2,500 miles and a sentence that
+read as though it described the whole North Carolina coast.
+
+| Where | Published wording, 2026-10-12 | Was |
+|---|---|---|
+| The deck, Beat 1 | "Most of the coast **in the study area** is giving way **at slower rates**." | "Most of that coast is giving way slowly." |
+| Beat 5, the 90% claim | "Ninety percent of the eroding coast **in the study area** is losing ground **at slower rates**." | "Ninety percent of the eroding coast is losing ground slowly." |
+
+"Slowly" became "at slower rates" in the same pass, at the Federation's request: a shoreline
+losing under a foot a year is slower than the worst decile, and it is not slow in any sense
+the reader should take as safe. Both sentences must keep both changes, or the deck and Beat 5
+describe different things.
+
+### New claims from this round
+
+| Claim | Status | Notes |
+|---|---|---|
+| Bulkheads and riprap increase erosion nearby, require costly repairs, and provide no ecological benefit | **BLOCKED, and published anyway** | Client-supplied in the 2026-10-08 round. **No citation was provided and none has been found.** It went live on Beat 3 on 2026-10-12 at the Federation's direction, which is why the status reads BLOCKED while the sentence is on the page: the status key says do not publish until resolved, and this one is the exception that was overridden. **Needs a source from NCCF before launch.** Three separate assertions, each of which wants its own citation: nearby erosion (flanking), repair cost, ecological value. The third is the strongest and the easiest to source; the first is the one most likely to be challenged. If no source arrives, the sentence comes down rather than ships. |
+| EPA disclaimer, assistance agreement 3D25824 | **REQUIRED, NON-EDITABLE** | Supplied by the client, 2026-10-12. Legally mandated boilerplate for the award. Runs verbatim in the footer as a single text node. **Do not reword, re-break, abbreviate, split, or paraphrase it, and do not let a copy pass "tighten" it.** Full text in the footer's `.fdisc` block in `vanishing-edge-draft2.html`. Note that it names the **North Carolina Department of Natural and Cultural Resources** as the recipient, which the page's funding paragraph does not mention. See the open question dated 2026-10-12. |

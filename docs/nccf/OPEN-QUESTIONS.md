@@ -205,3 +205,37 @@ it is losing. Decide whether to say so or drop them.
 **Federation ghost forest photographs.** Asked of Jacob, not answered. Carolina Public Press
 photographs remain unusable without the rights holder's permission; a credit line is not a licence.
 NASA Earth Observatory Landsat imagery is cleared with credit and is in the page.
+
+
+---
+
+## Opened 2026-10-12
+
+**Who is the recipient of EPA assistance agreement 3D25824?**
+**Owner:** Katie Martin / Jacob Boyd. **Blocks:** launch.
+
+The EPA disclaimer the client supplied on 2026-10-12, which runs verbatim in the footer and
+cannot be edited, names the **North Carolina Department of Natural and Cultural Resources**
+as the recipient of assistance agreement 3D25824.
+
+The page's funding paragraph (Beat 7) credits the award to the **Atlantic Conservation
+Coalition**, a partnership of North Carolina, South Carolina, Virginia, Maryland and The
+Nature Conservancy, with the Federation's share at roughly $30 million of $421 million.
+DNCR appears nowhere on the page.
+
+Both cannot be the whole picture. Either:
+
+- there is an undocumented pass-through in the funding chain, EPA to DNCR to the Coalition or
+  to the Federation, in which case the funding paragraph is incomplete rather than wrong and
+  the page should name DNCR; or
+- the funding paragraph is wrong about who received what, and it needs correcting.
+
+A reader who reads the footer and then the funding paragraph sees two different recipients for
+the same work. That is the kind of discrepancy a reporter finds first.
+
+**The funding paragraph is held pending this answer.** It was deliberately not touched in the
+2026-10-08 copy round for this reason. The disclaimer cannot be changed to resolve it, so the
+resolution is either a correction to the paragraph or a sentence added to it.
+
+**What to ask:** which entity holds 3D25824, and what the chain is from that entity to the
+Federation's roughly $30 million.

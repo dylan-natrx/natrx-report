@@ -1664,3 +1664,101 @@ Checked 2026-09-22, last of the day.
 
 **Closed since the last list:** the Natrx Assess glossary entry, rewritten; `SYNTHESIS-2026-07-22.md`
 line 47, annotated. Earlier today: the Jacob interview's -15 ft/yr, annotated in the source file.
+
+
+---
+
+## Session 12, 2026-10-12: the Federation's 2026-10-08 round
+
+Branch `nccf/feedback-2026-10-08`, three commits, not pushed.
+
+### Twelve copy edits
+
+All in `docs/nccf/reference/vanishing-edge-draft2.html`, applied as exact-substring replacements
+with a uniqueness check on each, so nothing was reformatted and no inline payload was touched.
+The file has sixteen lines over 2,000 characters carrying SVG, GeoJSON and base64; none of them
+appear in the diff.
+
+1. **The deck** now reads "Most of the coast in the study area is giving way at slower rates."
+2. **Beat 2** glosses sunny-day flooding for an 11th-grade read: higher tides and more frequent
+   flooding on clear days, and marshes and shorelines that are simply gone. The client's own
+   phrase was "sunny day flooding"; the gloss is deliberate and should survive future passes.
+3. **Beat 2** gains two sentences on marsh migration: where there is room the marsh moves inland,
+   and along much of this coast roads, houses and other infrastructure are in the way.
+4. **The insurance quote** adds tourism and local economies.
+5. **Beat 3** now names bulkheads and riprap as the traditional methods and separates them from
+   the nature-based options. **This sentence carries an unsourced claim. See `CLAIMS.md`.**
+6. **Beat 4** credits the Federation's partners on the site selection.
+7. **Beat 5's 90% claim** takes the same "in the study area" and "at slower rates" wording as the
+   deck. The two must stay matched.
+8. **Beat 6** lists four factors behind how much structure a site needs: wave energy, rate of
+   retreat, elevation, water depth.
+9. **The Beat 6 quote** reads "what the permit would allow" and ends "based on the site conditions."
+10. **Beat 6** replaces "hard data" with "more robust data", and "arguing for it after the fact"
+    with "identifying the needs after the fact, which requires more time and effort."
+11. **The kicker quote** gains "My team is excited to move these projects forward."
+12. **A new Boyd pull quote** on the wider salt marsh community, between the Hurricane Florence
+    paragraph and the datasets paragraph, so the two closing quotes are not back to back. It uses
+    the existing non-terminal `.closing.tight` pattern from Beat 6.
+
+Every new phrase was grepped for exactly one occurrence, and every superseded phrase grepped to
+zero. Em dashes and en dashes in the file: 0 and 0 before, 0 and 0 after.
+
+### The EPA disclaimer
+
+Required boilerplate for assistance agreement 3D25824, supplied by the client 2026-10-12. It runs
+verbatim and cannot be reworded, re-broken, abbreviated or split. Recorded in `CLAIMS.md` as
+REQUIRED and NON-EDITABLE, with its source.
+
+It sits inside `<footer>` as a new sibling block immediately after the closing `</div>` of `.fbar`,
+as `<div class="fdisc">`, carried as a single text node so no reflow can alter it. Diffed against an
+independent transcription of the required text: verbatim match, 674 characters.
+
+`.fdisc` is set as small print beside the `.fbar` rule: 10.5px, line-height 1.65,
+`rgba(243,241,244,.45)`, max-width 95ch, padding `22px var(--gut) 30px`, and a 1px top hairline
+matching `.fbar`'s `rgba(243,241,244,.16)`.
+
+**The Contents-bar clearance moved.** Amendment 05 put `padding-bottom:calc(24px + 52px)` on
+`footer .fbar` inside the 1080px query, to clear the fixed bar at page end. `.fdisc` is now the last
+block in the footer, so the clearance moved onto it. The base is `.fdisc`'s own 30px rather than
+`.fbar`'s 24px, so it reads `calc(30px + 52px)`; the 52px, which is the thing that matters, is
+unchanged. A mobile `.fdisc` rule in the 640px query pins the horizontal padding to `var(--gut)`,
+matching `.fbar`, and bumps line-height to 1.72. The horizontal padding was already matched, since
+both rules use the same token.
+
+**Verified in the browser**, dev server on `localhost:3000/?tenant=nccf` (the tenant resolves by
+hostname, so `/projects/nccf` 404s by design and the `?tenant=` fallback is the dev address).
+
+- **1440x900.** `.fdisc` padding `22px 72px 30px`, max-width 565px, eight lines, no horizontal
+  overflow, footer flush with the document end, nothing clipped.
+- **390x844.** `.fdisc` padding `22px 24px 82px`, line-height 18.06px, full width with a 24px inset,
+  no horizontal overflow. The last line of text ends 36px above the top of the fixed Contents bar,
+  so the clearance does its job. Document scroll height equals the footer's bottom, nothing clipped.
+- No console errors at either width.
+
+### Held, and declined
+
+**The funding paragraph is untouched.** The $421M and Atlantic Conservation Coalition sentence was
+held pending the DNCR question, now in `OPEN-QUESTIONS.md` dated 2026-10-12, owner Katie Martin /
+Jacob Boyd, blocking launch. The disclaimer names DNCR as the recipient of 3D25824; the page credits
+the Coalition and names no DNCR. Confirmed in the diff that no added or removed line touches that
+paragraph.
+
+**Two items declined in this round:** an Atlantic Conservation Coalition mention in the lede, and the
+longer version of the closing quote.
+
+### Carried
+
+**The bulkhead and riprap claim is live without a source.** Published 2026-10-12 at the client's
+direction and recorded in `CLAIMS.md` as BLOCKED, flagged published-without-source. It needs a
+citation from NCCF before launch, or the sentence comes down. Three assertions in one sentence:
+nearby erosion, repair cost, ecological value.
+
+**`src/app/projects/nccf/route.ts` was not touched**, per the brief.
+
+### Open
+
+Everything on the session 11 list stands, plus:
+
+10. **The DNCR funding question.** Blocks launch. See above.
+11. **A source for the bulkhead and riprap claim.** Blocks launch, and it is on the page now.
