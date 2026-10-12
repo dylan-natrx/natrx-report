@@ -1687,7 +1687,7 @@ appear in the diff.
    and along much of this coast roads, houses and other infrastructure are in the way.
 4. **The insurance quote** adds tourism and local economies.
 5. **Beat 3** now names bulkheads and riprap as the traditional methods and separates them from
-   the nature-based options. **This sentence carries an unsourced claim. See `CLAIMS.md`.**
+   the nature-based options. The claim is the Federation’s own wording. See `CLAIMS.md`.
 6. **Beat 4** credits the Federation's partners on the site selection.
 7. **Beat 5's 90% claim** takes the same "in the study area" and "at slower rates" wording as the
    deck. The two must stay matched.
@@ -1749,11 +1749,6 @@ longer version of the closing quote.
 
 ### Carried
 
-**The bulkhead and riprap claim is live without a source.** Published 2026-10-12 at the client's
-direction and recorded in `CLAIMS.md` as BLOCKED, flagged published-without-source. It needs a
-citation from NCCF before launch, or the sentence comes down. Three assertions in one sentence:
-nearby erosion, repair cost, ecological value.
-
 **`src/app/projects/nccf/route.ts` was not touched**, per the brief.
 
 ### Open
@@ -1761,4 +1756,7 @@ nearby erosion, repair cost, ecological value.
 Everything on the session 11 list stands, plus:
 
 10. **The DNCR funding question.** Blocks launch. See above.
-11. **A source for the bulkhead and riprap claim.** Blocks launch, and it is on the page now.
+
+**Closed same day:** the bulkhead and riprap claim. It was opened as needing an NCCF citation and
+closed on Dylan’s instruction that copy supplied by the client stands on the client’s authority.
+`CLAIMS.md` carries it as CONFIRMED (client-supplied) with the provenance recorded.
