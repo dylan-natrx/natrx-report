@@ -209,10 +209,12 @@ NASA Earth Observatory Landsat imagery is cleared with credit and is in the page
 
 ---
 
-## Opened 2026-10-12
+## Opened and closed 2026-10-12
 
 **Who is the recipient of EPA assistance agreement 3D25824?**
-**Owner:** Katie Martin / Jacob Boyd. **Blocks:** launch.
+**CLOSED 2026-10-12 on Dylan's instruction. Blocks nothing. The funding paragraph ships as
+written and the disclaimer runs verbatim.** The question and its reasoning are kept below as the
+record of what was known when the call was made.
 
 The EPA disclaimer the client supplied on 2026-10-12, which runs verbatim in the footer and
 cannot be edited, names the **North Carolina Department of Natural and Cultural Resources**
@@ -233,9 +235,10 @@ Both cannot be the whole picture. Either:
 A reader who reads the footer and then the funding paragraph sees two different recipients for
 the same work. That is the kind of discrepancy a reporter finds first.
 
-**The funding paragraph is held pending this answer.** It was deliberately not touched in the
-2026-10-08 copy round for this reason. The disclaimer cannot be changed to resolve it, so the
-resolution is either a correction to the paragraph or a sentence added to it.
+**Resolution.** The funding paragraph was held through the 2026-10-08 copy round, then released
+unchanged on 2026-10-12. Both passages are the client's own: the Federation supplied the disclaimer,
+and the funding paragraph came through the review round unchanged. Both stand on the Federation's
+authority. Nothing further is owed by Katie or Jacob.
 
-**What to ask:** which entity holds 3D25824, and what the chain is from that entity to the
-Federation's roughly $30 million.
+If the discrepancy is ever raised from outside, the answer is the chain from 3D25824 to the
+Federation's roughly $30 million, and this entry is where to start.

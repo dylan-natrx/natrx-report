@@ -1738,10 +1738,11 @@ hostname, so `/projects/nccf` 404s by design and the `?tenant=` fallback is the 
 
 ### Held, and declined
 
-**The funding paragraph is untouched.** The $421M and Atlantic Conservation Coalition sentence was
-held pending the DNCR question, now in `OPEN-QUESTIONS.md` dated 2026-10-12, owner Katie Martin /
-Jacob Boyd, blocking launch. The disclaimer names DNCR as the recipient of 3D25824; the page credits
-the Coalition and names no DNCR. Confirmed in the diff that no added or removed line touches that
+**The funding paragraph is untouched, and released.** The $421M and Atlantic Conservation Coalition
+sentence was held through the copy round, then released unchanged the same day on Dylan's
+instruction. The DNCR question in `OPEN-QUESTIONS.md` is closed and blocks nothing: both the
+disclaimer and the funding paragraph are the client's own copy and stand on the client's authority.
+Confirmed in the diff that no added or removed line touches that
 paragraph.
 
 **Two items declined in this round:** an Atlantic Conservation Coalition mention in the lede, and the
@@ -1753,10 +1754,9 @@ longer version of the closing quote.
 
 ### Open
 
-Everything on the session 11 list stands, plus:
+Everything on the session 11 list stands. **Nothing opened in this session is still open.**
 
-10. **The DNCR funding question.** Blocks launch. See above.
-
-**Closed same day:** the bulkhead and riprap claim. It was opened as needing an NCCF citation and
+**Closed same day:** the DNCR funding question, and the bulkhead and riprap claim. It was opened as needing an NCCF citation and
 closed on Dylan’s instruction that copy supplied by the client stands on the client’s authority.
-`CLAIMS.md` carries it as CONFIRMED (client-supplied) with the provenance recorded.
+`CLAIMS.md` carries it as CONFIRMED (client-supplied) with the provenance recorded. The DNCR
+question closed on the same instruction, with the funding paragraph released unchanged.
