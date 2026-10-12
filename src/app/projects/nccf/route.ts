@@ -53,18 +53,13 @@ const imageAlt =
   'coastal erosion starts with knowing where to begin.”, with the second ' +
   'clause in green, above the NCCF × Natrx lockup.'
 
-// REMOVE AT LAUNCH: delete the robots line below, and nothing else in this
-// file changes. The page went public on 2026-09-18 ahead of the Federation's
-// announcement, so it is reachable but must not be indexed until they have
-// announced it. Deleting this one line is the whole of turning indexing on.
-//
-// This deliberately does not stop the link previewing. Slack, iMessage and
-// LinkedIn read the og: tags and ignore robots entirely, so a shared link
-// still unfurls with the card. noindex governs search engines, not unfurlers,
-// which is exactly the split we want while the page is quietly open.
+// LAUNCHED 2026-10-12: the robots noindex/nofollow line was removed here, so
+// the page is fully indexable. It had been reachable but unindexed since
+// 2026-09-18, ahead of the Federation's announcement. Link unfurling was
+// never affected either way: Slack, iMessage and LinkedIn read the og: tags
+// and ignore robots entirely.
 const meta =
   '<link rel="icon" href="/images/favicon.png">' +
-  '<meta name="robots" content="noindex, nofollow">' +
   `<meta name="description" content="${description}">` +
   `<meta property="og:title" content="${pageTitle}">` +
   `<meta property="og:description" content="${description}">` +
